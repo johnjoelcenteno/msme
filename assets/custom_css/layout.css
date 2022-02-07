@@ -1,0 +1,109 @@
+body {
+    background-color: white;
+    font-size: 1rem !important;
+}
+
+.spacer-75 {
+    margin-bottom: 75px;
+}
+
+.spacer-20 {
+    margin-bottom: 20px;
+}
+
+.wrapper-body {
+    padding-bottom: 50px;
+    padding-left: 10px;
+}
+
+.content-side-margin30 {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.k-header.k-grid-toolbar {
+    border-color: #81c784 !important;
+}
+
+.k-button,
+.k-header {
+    font-weight: 500;
+}
+
+.k-grid .k-header .k-button {
+    font-size: medium;
+}
+
+.k-grid-header th.k-header {
+    padding-left: 1.286em;
+}
+
+h3 .k-header {
+    font-size: 15px !important;
+}
+
+.k-grid-content tr td {
+    font-size: 14px;
+}
+
+.k-grid-content tr td .btn {
+    padding: 6px;
+}
+
+.btn .material-icons {
+    position: relative;
+    display: inline-block;
+    top: 0;
+    margin-top: -1em;
+    margin-bottom: -1em;
+    font-size: 1.1rem;
+    vertical-align: middle;
+}
+
+.k-floatwrap.k-grid-pager.k-pager-wrap.k-widget {
+    font-size: 14px;
+}
+
+.btn i.material-icons{
+    color: white;
+}
+
+
+button#yesButton {
+    border: 0;
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+}
+
+button#noButton {
+    border: 0;
+    border-radius: 5px;
+}
+
+.card-header.card-header-green {
+    background: linear-gradient( 
+60deg
+ ,#4caf50,#4caf50);
+}
+
+.btn.btn-primary{
+    background-color: #4caf50 !important;
+}
+
+.btn.btn-secondary{
+    background-color: gold !important;
+    font-weight: bold;
+}
+
+.card .card-header-primary{
+    background: linear-gradient(
+        60deg
+        ,#4caf50,#4caf50) !important;
+
+        box-shadow: 0 5px 20px 0 rgb(0 0 0 / 20%), 0 13px 24px -11px #8191a1;
+}
+
+
+
+

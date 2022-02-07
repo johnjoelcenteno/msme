@@ -1,0 +1,20 @@
+#reference_number{
+    color: green;
+    padding-left: 30px;
+}
+
+#date_created{
+    color: green;
+    padding-left: 30px;
+}
+
+.badge.badge-pill{
+    font-size: 13px;
+    font-weight: bold;
+}
+
+span.badge.badge-pill.badge-success {
+    background-color: gold;
+    color: black;
+}
+

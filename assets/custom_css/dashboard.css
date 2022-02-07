@@ -1,0 +1,10 @@
+img.img-fluid {
+    max-width: 50%;
+    max-height: 50%;
+}
+
+.card-header.card-header-green {
+    background: linear-gradient( 
+60deg
+ ,#4caf50,#4caf50);
+}
