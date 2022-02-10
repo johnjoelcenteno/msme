@@ -33,7 +33,7 @@ $fullName = $this->Main_model->getFullName('employee', "credentials_id", $_SESSI
                                 <i class="material-icons">manage_accounts</i> User Accounts
                             </a>
 
-                            <a title="Official Receipt" class="dropdown-item" href="/OR">
+                            <a title="Official Receipt" class="dropdown-item" href="<?= base_url() ?>Offices">
                                 <i class="material-icons">apartment</i> Office
                             </a>
 

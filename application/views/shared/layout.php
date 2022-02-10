@@ -71,7 +71,7 @@
                         <script>
                             document.write(new Date().getFullYear())
                         </script>, made with <i class="material-icons">favorite</i> by
-                        <a href="" target="blank">Joel John Centeno</a>
+                        <a href="" target="blank"></a>
                     </div>
                 </div>
             </footer>
