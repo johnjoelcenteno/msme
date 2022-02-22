@@ -21,6 +21,11 @@ class UserAccounts extends CI_Controller
         $this->view_manipulation->renderViewWithLayout();
     }
 
+    public function getAllOffices()
+    {
+        echo json_encode($this->Main_model->get("offices", "office_id")->result_array());
+    }
+
     public function getListOfPenros()
     {
         $selectedOffice = $this->input->post("selected_office");
@@ -30,7 +35,7 @@ class UserAccounts extends CI_Controller
         echo '<option value="">Select PENRO/CENRO/Regional Office</option>';
         foreach ($query->result() as $row) {
             echo '
-                <option value="' . $row->office_id . '">' . $row->office_name  . '</option>
+                <option value="' . $row->office_name . '">' . $row->office_name  . '</option>
             ';
         }
     }
@@ -44,6 +49,7 @@ class UserAccounts extends CI_Controller
     public function create()
     {
         $data['guid'] = $this->Main_model->createGuid();
+        $data['listOfOffices'] = $this->Main_model->get('offices', 'office_id');
 
         $params['viewName'] = 'manage_accounts/create';
         $params['pageTitle'] = '';

@@ -47,7 +47,7 @@
                                     <option value="PENRO Batanes">PENRO Batanes</option>
                                     <option value="PENRO Cagayan">PENRO Cagayan</option>
                                     <option value="PENRO Isabela">PENRO Isabela</option>
-                                    <option value="PENRO Nueva Viscaya">PENRO Nueva Viscaya</option>
+                                    <option value="PENRO Nueva Vizcaya">PENRO Nueva Vizcaya</option>
                                     <option value="PENRO Quirino">PENRO Quirino</option>
                                     <option value="Regional Office">Regional Office</option>
                                 </select>
@@ -61,20 +61,57 @@
 
                             <div class="form-group col-md-4">
                                 <label for="">Position</label>
-                                <select name="" id="positionDd" class="form-control" disabled>
-                                    <option value="">Select position</option>
-                                </select>
+                                <input type="text" class="form-control" placeholder="Enter position here">
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="form-control col-md-6">
+                            <div class="form-group col-md-6">
                                 <label for="">Email</label>
-                                <input type="email" class="form-control" placeholder="Enter Email">
+                                <input type="text" class="form-control" placeholder="Enter position here">
                             </div>
-                            <div class="form-control col-md-6">
+                            <div class="form-group col-md-6">
+                                <label for="">Place of vacancy to rate</label>
+                                <br>
+                                <button type="button" id="restartBtn" class="mx-1 btn btn-success btn-sm" style="display:none"><span class="material-icons">refresh</span></button>
+                                <button type="button" id="addPlaceVacancyBtn" class="mx-1 btn btn-info btn-sm">View</button>
+                                <button class="btn btn-danger btn-sm ml-5" type="button" id="clearBtn" style="display:none;">clear</button>
+                                <button class="btn btn-primary btn-sm " type="button" id="selectAllBtn" style="display:none">Select all</button>
+                                <div id="selectedPositions"></div>
+                                <input type="hidden" class="form-control" placeholder="Enter position to rate here">
+                            </div>
+                        </div>
+
+                        <div class="row" id="tableOfficeCollection" style="display: none;margin-bottom:30px">
+                            <div class="form-group col-md-12">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10px;"></th>
+                                            <th>Office name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($listOfOffices->result() as $row) { ?>
+                                            <tr>
+                                                <td><input type="checkbox" class="selected-offices-text" value="<?= "$row->office_name,$row->province" ?>"></td>
+                                                <td>
+                                                    <label for=""><?= "$row->office_name, <strong>$row->province</strong>" ?></label>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                                <button class="btn btn-primary btn-sm" type="button" id="addSelectedBtn">Add selected</button>
+                            </div>
+                        </div>
+
+                        <script src="<?= base_url() ?>assets/custom_js/manage-account-create.js"></script>
+
+                        <div class="row">
+                            <div class="form-group col-md-12">
                                 <label for="">Designation</label>
-                                <input type="text" class="form-control" placeholder="Enter Designation">
+                                <input type="text" class="form-control" placeholder="Enter designation here">
                             </div>
                         </div>
 
@@ -89,22 +126,6 @@
                                         $("#penroDd").html(resp);
                                     });
                                     selectedOffice == "" ? $("#penroDd").attr("disabled", true) : $("#penroDd").attr("disabled", false);
-                                });
-
-                                $("#penroDd").change(function(e) {
-                                    let selectedPenro = $(this).val();
-                                    selectedPenro == "" ? $("#positionDd").attr("disabled", true) : $("#positionDd").attr("disabled", false);
-
-                                    $.post("<?= base_url() ?>UserAccounts/getListOfPosition", {
-                                        office_id: selectedPenro
-                                    }, function(resp) {
-                                        resp = JSON.parse(resp);
-                                        let optionsString;
-                                        optionsString += "<option>Select Position</option>";
-                                        resp.forEach(element => optionsString += `<option value="${element.position_id}">${element.position_title}</option>`);
-
-                                        $("#positionDd").html(optionsString);
-                                    });
                                 });
                             });
                         </script>

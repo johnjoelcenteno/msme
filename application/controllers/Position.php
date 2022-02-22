@@ -65,7 +65,7 @@ class Position extends CI_Controller
     {
         $this->db->select("*");
         $this->db->from("position");
-        $this->db->join("offices", "position.office_id = offices.office_id");
+        // $this->db->join("offices", "position.office_id = offices.office_id");
         $result = $this->db->get()->result_array();
 
         echo json_encode($result);
@@ -96,8 +96,9 @@ class Position extends CI_Controller
         $create['expirience'] = $this->input->post("expirience");
         $create['eligibility'] = $this->input->post("eligibility");
         $create['competency'] = $this->input->post("eligibility");
-        $create['division_id'] = $this->input->post("division_id");
-
+        $create['office_name'] = $this->input->post("office_name");
+        $create['province'] = $this->input->post("province");
+        $this->Main_model->showNormalArray($create);
         echo $this->Main_model->_insert("position", $create);
     }
 

@@ -145,7 +145,9 @@
                 expirience: $('#expirience').val(),
                 eligibility: $('#eligibility').val(),
                 competency: $('#competency').val(),
-                division_id: $('#divisionDd').val()
+                division_id: $('#divisionDd').val(),
+                province: $('#officeDd').val(),
+                office_name: $('#penroDd').val()
             }
 
             $.post("<?= base_url() ?>Position/createPost", postObj, function(resp) {
