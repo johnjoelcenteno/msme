@@ -4,6 +4,17 @@
         display: flex;
         justify-content: right;
     }
+
+    .radio-box-user-roles {
+        height: 20px;
+        width: 20px;
+        display: inline;
+        margin-right: 10px;
+    }
+
+    .display-inline {
+        display: inline;
+    }
 </style>
 <div class="spacer-75"></div>
 &nbsp;
@@ -71,19 +82,15 @@
                                 <input type="text" class="form-control" placeholder="Enter position here">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="">Place of vacancy to rate</label>
-                                <br>
-                                <button type="button" id="restartBtn" class="mx-1 btn btn-success btn-sm" style="display:none"><span class="material-icons">refresh</span></button>
-                                <button type="button" id="addPlaceVacancyBtn" class="mx-1 btn btn-info btn-sm">View</button>
-                                <button class="btn btn-danger btn-sm ml-5" type="button" id="clearBtn" style="display:none;">clear</button>
-                                <button class="btn btn-primary btn-sm " type="button" id="selectAllBtn" style="display:none">Select all</button>
-                                <div id="selectedPositions"></div>
-                                <input type="hidden" class="form-control" placeholder="Enter position to rate here">
+                                <label for="">Place of designation</label>
+                                <input type="text" class="form-control" placeholder="Enter place of designation here">
                             </div>
                         </div>
 
-                        <div class="row" id="tableOfficeCollection" style="display: none;margin-bottom:30px">
-                            <div class="form-group col-md-12">
+                        <div class="row" id="tableOfficeCollection">
+                            <div class="form-group col-md-6">
+                                <h3 class="mb-4">Select place of vacancy to rate</h3>
+
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
@@ -102,41 +109,69 @@
                                         <?php } ?>
                                     </tbody>
                                 </table>
-                                <button class="btn btn-primary btn-sm" type="button" id="addSelectedBtn">Add selected</button>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <h3 class="mb-4">Select user role</h3>
+
+                                <ul>
+                                    <li>
+                                        <input type="radio" class="form-control radio-box-user-roles" name="userRoleRadioBoxes" value="chairman">
+                                        <h3 class="display-inline">Chairman</h3>
+                                    </li>
+                                    <li>
+                                        <input type="radio" class="form-control radio-box-user-roles" name="userRoleRadioBoxes" value="viceChairman">
+                                        <h3 class="display-inline">Vice Chairman</h3>
+                                    </li>
+                                    <li>
+                                        <input type="radio" class="form-control radio-box-user-roles" name="userRoleRadioBoxes" value="endUser">
+                                        <h3 class="display-inline">End User</h3>
+                                    </li>
+                                    <li>
+                                        <input type="radio" class="form-control radio-box-user-roles" name="userRoleRadioBoxes" value="secretariat">
+                                        <h3 class="display-inline">Secretariat</h3>
+                                    </li>
+                                    <li>
+                                        <input type="radio" class="form-control radio-box-user-roles" name="userRoleRadioBoxes" value="k4FirstLevel">
+                                        <h3 class="display-inline"><strong>K4 UNION</strong> First level representative</h3>
+                                    </li>
+                                    <li>
+                                        <input type="radio" class="form-control radio-box-user-roles" name="userRoleRadioBoxes" value="k4SecondLevel">
+                                        <h3 class="display-inline"><strong>GAD</strong> First level representative</h3>
+                                    </li>
+                                    <li>
+                                        <input type="radio" class="form-control radio-box-user-roles" name="userRoleRadioBoxes" value="gadFirstLevel">
+                                        <h3 class="display-inline"><strong>GAD</strong> First level representative</h3>
+                                    </li>
+                                    <li>
+                                        <input type="radio" class="form-control radio-box-user-roles" name="userRoleRadioBoxes" value="gadSecondLevel">
+                                        <h3 class="display-inline"><strong>GAD</strong> Second level representative</h3>
+                                    </li>
+                                    <li>
+                                        <input type="radio" class="form-control radio-box-user-roles" name="userRoleRadioBoxes" value="member">
+                                        <h3 class="display-inline">Member</h3>
+                                    </li>
+                                </ul>
+                                <button class="btn btn-primary mt-5" type="submit">Create</button>
                             </div>
                         </div>
 
                         <script src="<?= base_url() ?>assets/custom_js/manage-account-create.js"></script>
-
-                        <div class="row">
-                            <div class="form-group col-md-12">
-                                <label for="">Designation</label>
-                                <input type="text" class="form-control" placeholder="Enter designation here">
-                            </div>
-                        </div>
-
-                        <script>
-                            $(document).ready(function() {
-                                $('#officeDd').change(function() {
-                                    let selectedOffice = $(this).val();
-
-                                    $.post("<?= base_url() ?>UserAccounts/getListOfPenros", {
-                                        selected_office: selectedOffice
-                                    }, function(resp) {
-                                        $("#penroDd").html(resp);
-                                    });
-                                    selectedOffice == "" ? $("#penroDd").attr("disabled", true) : $("#penroDd").attr("disabled", false);
-                                });
-                            });
-                        </script>
-
-
-
-                        <div class="row submit-button-row">
-                            <button class="btn btn-primary" type="submit">Create</button>
-                        </div>
                     </form>
                 </div>
             </div>
         </div>
 </section>
+<script>
+    $(document).ready(function() {
+        $('#officeDd').change(function() {
+            let selectedOffice = $(this).val();
+
+            $.post("<?= base_url() ?>UserAccounts/getListOfPenros", {
+                selected_office: selectedOffice
+            }, function(resp) {
+                $("#penroDd").html(resp);
+            });
+            selectedOffice == "" ? $("#penroDd").attr("disabled", true) : $("#penroDd").attr("disabled", false);
+        });
+    });
+</script>
