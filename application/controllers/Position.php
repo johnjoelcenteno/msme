@@ -46,12 +46,10 @@ class Position extends CI_Controller
 	{
 		$positionId = $this->input->get("id");
 		$positionTable = $this->Main_model->get_where("position", "position_id", $positionId)->row();
-		$divisionTable = $this->Main_model->get("division", "division_id")->result();
+		// $this->Main_model->showNormalArray($positionTable);
 
 		$data['positionTable'] = $positionTable;
-		$data['penro'] = $this->Main_model->getPenroByOfficeId($positionTable->office_id);
-		$data['divisionTable'] = $divisionTable;
-
+		$data['penro'] = $positionTable->province;
 
 		$params['viewName'] = 'manage_position/update';
 		$params['pageTitle'] = '';
@@ -73,13 +71,10 @@ class Position extends CI_Controller
 
 	public function create()
 	{
-		$divisionTable = $this->Main_model->get("division", "division_id")->result();
-
-		$data['divisionTable'] = $divisionTable;
 
 		$params['viewName'] = 'manage_position/create';
 		$params['pageTitle'] = '';
-		$params['renderedData'] = $data;
+		$params['renderedData'] = [];
 
 		$this->load->library('view_manipulation', $params);
 		$this->view_manipulation->renderViewWithLayout();
@@ -89,13 +84,12 @@ class Position extends CI_Controller
 	{
 		$create['position_title'] = $this->input->post("position_title");
 		$create['plantilla_item_no'] = $this->input->post("plantilla_item_no");
-		$create['office_id'] = $this->input->post("office_id");
 		$create['Salary_job_pay_scale'] = $this->input->post("salary_job_pay_scale");
 		$create['education'] = $this->input->post("education");
 		$create['training'] = $this->input->post("training");
 		$create['expirience'] = $this->input->post("expirience");
 		$create['eligibility'] = $this->input->post("eligibility");
-		$create['competency'] = $this->input->post("eligibility");
+		$create['competency'] = $this->input->post("competency");
 		$create['office_name'] = $this->input->post("office_name");
 		$create['province'] = $this->input->post("province");
 		$this->Main_model->showNormalArray($create);
@@ -108,14 +102,14 @@ class Position extends CI_Controller
 
 		$update['position_title'] = $this->input->post("position_title");
 		$update['plantilla_item_no'] = $this->input->post("plantilla_item_no");
-		$update['office_id'] = $this->input->post("office_id");
+		$update['office_name'] = $this->input->post("office_name");
 		$update['Salary_job_pay_scale'] = $this->input->post("salary_job_pay_scale");
 		$update['education'] = $this->input->post("education");
 		$update['training'] = $this->input->post("training");
 		$update['expirience'] = $this->input->post("expirience");
 		$update['eligibility'] = $this->input->post("eligibility");
-		$update['competency'] = $this->input->post("eligibility");
-		$update['division_id'] = $this->input->post("division_id");
+		$update['competency'] = $this->input->post("competency");
+		$update['province'] = $this->input->post("province");
 
 		echo $this->Main_model->_update("position", "position_id", $positionId, $update);
 	}
