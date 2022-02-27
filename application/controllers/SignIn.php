@@ -50,10 +50,10 @@ class SignIn extends CI_Controller
 		$data['password'] = $this->Main_model->passwordEncryptor($this->input->post("password"));
 		$result = $this->Main_model->multiple_where("credentials",  $data);
 
-
 		if ($result) {
 			$result = $result->row();
 			$this->session->set_userdata("credentials_id", $result->credentials_id);
+
 			echo "1";
 		} else {
 			echo "0";

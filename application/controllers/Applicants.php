@@ -103,10 +103,7 @@ class Applicants extends CI_Controller
 		$data['latest_IPCR_rating'] = $this->input->post("latest_IPCR_rating");
 		$data['relevant_training_hours'] = $this->input->post("relevant_training_hours");
 		$data['relevant_experience'] = $this->input->post("relevant_experience");
-		$data['position_title'] = $this->input->post("position_title");
-		$data['plantilla_item_no'] = $this->input->post("plantilla_item_no");
-		$data['office_name'] = $this->input->post("office_name");
-		$data['province'] = $this->input->post("province");
+		$data['position_applied_for'] = $this->input->post("position_applied_for");
 
 		$this->Main_model->_insert("applicant", $data);
 	}
@@ -118,7 +115,8 @@ class Applicants extends CI_Controller
 		$data['applicant_id'] = $applicant_id;
 		$data['guid'] = $this->Main_model->createGuid();
 		$data['listOfOffices'] = $this->Main_model->get('offices', 'office_id');
-		$data['formInput'] = json_encode($this->Main_model->get_where("applicant", "applicant_id", $applicant_id)->result_array());
+		$query = $this->Main_model->get_where("applicant", "applicant_id", $applicant_id)->result_array();
+		$data['formInput'] = json_encode($query);
 
 		$params['viewName'] = 'manage_applicants/update';
 		$params['pageTitle'] = '';
@@ -130,28 +128,24 @@ class Applicants extends CI_Controller
 
 	public function updatePost()
 	{
-		$credentialsId = $this->input->post('credentials_id');
-		$employeeId = $this->input->post('employee_id');
-		$userType = $this->input->post('user_role') == 'secretariat' ? "super_admin" : 'regular';
+		$id = $this->input->post('id');
+		$data['firstname'] = $this->input->post("firstname");
+		$data['middlename'] = $this->input->post("middlename");
+		$data['lastname'] = $this->input->post("lastname");
+		$data['gender'] = $this->input->post("gender");
+		$data['age'] = $this->input->post("age");
+		$data['eligibility'] = $this->input->post("eligibility");
+		$data['position_designation'] = $this->input->post("position_designation");
+		$data['salary_grade'] = $this->input->post("salary_grade");
+		$data['place_of_assignment'] = $this->input->post("place_of_assignment");
+		$data['status_of_appointment'] = $this->input->post("status_of_appointment");
+		$data['education_attainment'] = $this->input->post("education_attainment");
+		$data['date_of_last_promotion'] = $this->input->post("date_of_last_promotion");
+		$data['latest_IPCR_rating'] = $this->input->post("latest_IPCR_rating");
+		$data['relevant_training_hours'] = $this->input->post("relevant_training_hours");
+		$data['relevant_experience'] = $this->input->post("relevant_experience");
+		$data['position_applied_for'] = $this->input->post("position_applied_for");
 
-		$email = $this->input->post("email_address");
-		$password = $this->Main_model->passwordEncryptor("1234");
-		$cred['username'] = $email;
-		$cred['password'] = $password;
-		$cred['user_type'] = $userType;
-		$this->Main_model->_update("credentials", 'credentials_id', $credentialsId, $cred);
-
-		$create['designation'] = $this->input->post("designation");
-		$create['email_address'] = $this->input->post("email_address");
-		$create['firstname'] = $this->input->post("firstname");
-		$create['lastname'] = $this->input->post("lastname");
-		$create['middlename'] = $this->input->post("middlename");
-		$create['office_name'] = $this->input->post("office_name");
-		$create['position'] = $this->input->post("position");
-		$create['province'] = $this->input->post("province");
-		$create['user_role'] = $this->input->post("user_role");
-		$create['vacant_position_to_rate'] = $this->input->post("vacant_position_to_rate");
-
-		$this->Main_model->_update('employee', 'employee_id', $employeeId, $create);
+		$this->Main_model->_update("applicant", "applicant_id", $id, $data);
 	}
 }

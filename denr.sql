@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 26, 2022 at 05:29 AM
+-- Generation Time: Feb 27, 2022 at 12:46 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.3.33
 
@@ -44,18 +44,20 @@ CREATE TABLE `applicant` (
   `latest_IPCR_rating` varchar(65) NOT NULL,
   `relevant_training_hours` varchar(65) NOT NULL,
   `relevant_experience` text NOT NULL,
-  `position_title` varchar(65) NOT NULL,
-  `plantilla_item_no` text NOT NULL,
-  `office_name` varchar(65) NOT NULL,
-  `province` varchar(65) NOT NULL
+  `position_applied_for` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `applicant`
 --
 
-INSERT INTO `applicant` (`applicant_id`, `firstname`, `middlename`, `lastname`, `gender`, `age`, `eligibility`, `position_designation`, `salary_grade`, `place_of_assignment`, `status_of_appointment`, `education_attainment`, `date_of_last_promotion`, `latest_IPCR_rating`, `relevant_training_hours`, `relevant_experience`, `position_title`, `plantilla_item_no`, `office_name`, `province`) VALUES
-(20, 'test', 'test', 'test', 'test', 'test', 'test', 'test', '1', 'test', 'test', 'tes', 'test', 'test', '1', 'test', 'test', 'testing', 'Office of the PENR Officer', 'PENRO Isabela');
+INSERT INTO `applicant` (`applicant_id`, `firstname`, `middlename`, `lastname`, `gender`, `age`, `eligibility`, `position_designation`, `salary_grade`, `place_of_assignment`, `status_of_appointment`, `education_attainment`, `date_of_last_promotion`, `latest_IPCR_rating`, `relevant_training_hours`, `relevant_experience`, `position_applied_for`) VALUES
+(25, 'Joel', 'John', 'Centeno', 'male', '22', 'elig', 'pos', '1', 'place', '1', '2', '2', '2', '2', '2', 'testing,test2'),
+(26, 'test2', 'test2', 'test2', 'test2', 'test2', 'test2', 'test2', '1', 'test2', 'test2', 'test2', 'test2', 'test2', '1', 'test2', 'test2'),
+(27, 'test2', 'test2', 'test2', 'test2', 'test2', 'test2', 'test2', '1', 'test2', 'test2', 'test2', 'test2', 'test2', '1', 'test2', 'testing,test2'),
+(28, 'test2', 'test2', 'test2', 'test2', 'test2', 'test2', 'test2', '1', 'test2', 'test2', 'test2', 'test2', 'test2', '1', 'test2', 'testing,test2'),
+(29, 'test2', 'test2', 'test2', 'test2', 'test2', 'test2', 'test2', '1', 'test2', 'test2', 'test2', 'test2', 'test2', '1', 'test2', 'testing,test2'),
+(30, 'test', 'test', 'test', 'test', 'test', 'test', 'test', '16', 'test', 'test', 'test', 'test', 'test', '15', 'test', 'test3');
 
 -- --------------------------------------------------------
 
@@ -125,7 +127,7 @@ CREATE TABLE `employee` (
 
 INSERT INTO `employee` (`employee_id`, `firstname`, `middlename`, `lastname`, `office_name`, `province`, `email_address`, `position`, `designation`, `vacant_position_to_rate`, `user_role`, `credentials_id`) VALUES
 (2, 'super', '', 'admin', '0', '0', 'superadmin@gmail.com', '0', '0', '\"[]\"', '0', 2),
-(16, 'joel', 'john', 'centeno', 'PENRO Batanes', 'PENRO Batanes', 'email@gmail.com', 'position', '', '[]', 'viceChairman', 15);
+(16, 'joel', 'john', 'centeno', 'PENRO Batanes', 'PENRO Batanes', 'email@gmail.com', 'position', '', '[{\"province\":\"Regional Office\",\"office_name\":\"Office of the Regional Executive Director\"},{\"province\":\"PENRO Isabela\",\"office_name\":\"Office of the PENR Officer\"}]', 'viceChairman', 15);
 
 -- --------------------------------------------------------
 
@@ -202,15 +204,18 @@ CREATE TABLE `position` (
   `expirience` text NOT NULL,
   `eligibility` text NOT NULL,
   `competency` text NOT NULL,
-  `is_vacant` bit(1) NOT NULL
+  `is_vacant` bit(1) NOT NULL,
+  `is_for_interview` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `position`
 --
 
-INSERT INTO `position` (`position_id`, `position_title`, `plantilla_item_no`, `office_name`, `province`, `Salary_job_pay_scale`, `education`, `training`, `expirience`, `eligibility`, `competency`, `is_vacant`) VALUES
-(10, 'test', 'testing', 'Office of the PENR Officer', 'PENRO Isabela', 1, 'test', 'test', 'test', 'test', 'test', b'1');
+INSERT INTO `position` (`position_id`, `position_title`, `plantilla_item_no`, `office_name`, `province`, `Salary_job_pay_scale`, `education`, `training`, `expirience`, `eligibility`, `competency`, `is_vacant`, `is_for_interview`) VALUES
+(10, 'test', 'testing', 'Office of the PENR Officer', 'PENRO Isabela', 1, 'test', 'test', 'test', 'test', 'test', b'1', 1),
+(11, 'test2', 'test2', 'Finance Division', 'Regional Office', 13, 'test2', 'test2', 'test2', 'test2', 'test2', b'1', 1),
+(12, 'test3', 'test3', 'Office of the Regional Executive Director', 'Regional Office', 15, 'test3', 'test3', 'test3', 'test3', 'test3', b'1', 1);
 
 --
 -- Indexes for dumped tables
@@ -260,7 +265,7 @@ ALTER TABLE `position`
 -- AUTO_INCREMENT for table `applicant`
 --
 ALTER TABLE `applicant`
-  MODIFY `applicant_id` int(65) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `applicant_id` int(65) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `credentials`
@@ -290,7 +295,7 @@ ALTER TABLE `offices`
 -- AUTO_INCREMENT for table `position`
 --
 ALTER TABLE `position`
-  MODIFY `position_id` int(65) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `position_id` int(65) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

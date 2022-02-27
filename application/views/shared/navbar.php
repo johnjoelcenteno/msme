@@ -51,8 +51,8 @@ $fullName = $this->Main_model->getFullName('employee', "credentials_id", $_SESSI
 
 							<div class="dropdown-divider"></div>
 
-							<a title="Downloadable Forms" class="dropdown-item" href="/Documents">
-								<i class="material-icons">date_range</i> Interview Scheduling
+							<a title="Downloadable Forms" class="dropdown-item" href="<?= base_url() ?>PositionsToInterview">
+								<i class="material-icons">date_range</i> Interview Positions
 							</a>
 						</div>
 					</li>

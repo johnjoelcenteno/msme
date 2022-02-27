@@ -1,129 +1,133 @@
 <link rel="stylesheet" href="<?= base_url() ?>assets/custom_css/dashboard.css">
 <style>
-    .submit-button-row {
-        display: flex;
-        justify-content: right;
-    }
+	.submit-button-row {
+		display: flex;
+		justify-content: right;
+	}
 
-    .bg-white-smoke {
-        background-color: #fffbfb !important;
-        border-radius: 10px;
-    }
+	.bg-white-smoke {
+		background-color: #fffbfb !important;
+		border-radius: 10px;
+	}
 
-    strong {
-        font-weight: bolder;
-    }
+	strong {
+		font-weight: bolder;
+	}
 </style>
 <div class="spacer-75"></div>
 &nbsp;
 <section>
-    <nav aria-label="breadcrumb" role="navigation">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
-            <li class="breadcrumb-item"><a href="javascript:;">Library</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Rate Applicant</li>
-        </ol>
-    </nav>
+	<nav aria-label="breadcrumb" role="navigation">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
+			<li class="breadcrumb-item"><a href="javascript:;">Library</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Rate Applicant</li>
+		</ol>
+	</nav>
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header card-header-primary">
-                    <h4 class="card-title">(Applicant name here)</h4>
-                    <p class="category">Salary grade 15 and above</p>
-                </div>
-                <div class="card-body">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-header card-header-primary">
+					<h4 class="card-title">(Applicant name here)</h4>
+					<p class="category">Salary grade 15 and above</p>
+				</div>
+				<div class="card-body">
 
-                    <div class="row mt-3">
-                        <div class="col-md-4">
-                            <div class="card-body bg-white-smoke">
-                                <p>Eligibility: <strong>Lorem, ipsum dolor.</strong></p>
-                                <p>Present Position: <strong>Lorem, ipsum dolor.</strong></p>
-                                <p>Designation: <strong>Lorem, ipsum dolor.</strong></p>
-                                <p>Salary Grade: <strong>Lorem, ipsum dolor.</strong></p>
-                                <p>Present Place of Assignment: <strong>Lorem, ipsum dolor.</strong></p>
-                                <p>Status of Appointment: <strong>Lorem, ipsum dolor.</strong></p>
-                                <p>Education Attainmenet: <strong>Lorem, ipsum dolor.</strong></p>
-                                <p>Age: <strong>Lorem, ipsum dolor.</strong></p>
-                                <p>Date of Last Promotion: <strong>Lorem, ipsum dolor.</strong></p>
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <form action="">
-                                <h5>A. Physical Characteristics and Personality Traits <strong>(10 points)</strong></h5>
-                                <div class="row">
-                                    <div class="form-group col-md-6">
-                                        <label for="">Conscientiousness</label>
-                                        <input type="number" placeholder="Enter (0 - 2 points)" min="0" max="2" class="form-control">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="">Extraversion</label>
-                                        <input type="number" placeholder="Enter (0 - 2 points)" min="0" max="2" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-md-6">
-                                        <label for="">Agreeableness</label>
-                                        <input type="number" placeholder="Enter (0 - 2 points)" min="0" max="2" class="form-control">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="">Openness to experience</label>
-                                        <input type="number" placeholder="Enter  (2points)" min="0" max="2" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-md-6">
-                                        <label for="">Emotional Stability</label>
-                                        <input type="number" placeholder="Emotional Stability (0 - 2 points)" min="0" max="2" class="form-control">
-                                    </div>
-                                </div>
+					<div class="row mt-3">
+						<div class="col-md-4">
+							<div class="card-body bg-white-smoke">
+								<p>Eligibility: <strong>Lorem, ipsum dolor.</strong></p>
+								<p>Present Position: <strong>Lorem, ipsum dolor.</strong></p>
+								<p>Designation: <strong>Lorem, ipsum dolor.</strong></p>
+								<p>Salary Grade: <strong>Lorem, ipsum dolor.</strong></p>
+								<p>Present Place of Assignment: <strong>Lorem, ipsum dolor.</strong></p>
+								<p>Status of Appointment: <strong>Lorem, ipsum dolor.</strong></p>
+								<p>Education Attainmenet: <strong>Lorem, ipsum dolor.</strong></p>
+								<p>Age: <strong>Lorem, ipsum dolor.</strong></p>
+								<p>Date of Last Promotion: <strong>Lorem, ipsum dolor.</strong></p>
+							</div>
+						</div>
+						<div class="col-md-8">
+							<form action="">
+								<h5>A. Physical Characteristics and Personality Traits <strong>(10 points)</strong></h5>
+								<div class="row">
+									<div class="form-group col-md-6">
+										<label for="">Conscientiousness</label>
+										<input type="number" placeholder="Enter (0 - 2 points)" min="0" max="2" class="form-control">
+									</div>
+									<div class="form-group col-md-6">
+										<label for="">Extraversion</label>
+										<input type="number" placeholder="Enter (0 - 2 points)" min="0" max="2" class="form-control">
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group col-md-6">
+										<label for="">Agreeableness</label>
+										<input type="number" placeholder="Enter (0 - 2 points)" min="0" max="2" class="form-control">
+									</div>
+									<div class="form-group col-md-6">
+										<label for="">Openness to experience</label>
+										<input type="number" placeholder="Enter  (2points)" min="0" max="2" class="form-control">
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group col-md-6">
+										<label for="">Emotional Stability</label>
+										<input type="number" placeholder="Emotional Stability (0 - 2 points)" min="0" max="2" class="form-control">
+									</div>
+								</div>
 
-                                <br>
+								<br>
 
-                                <h5>B. Potential (10 points)</h5>
+								<h5>B. Potential (10 points)</h5>
 
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <h6>Points earned based on interview by Panel (4 points)</h6>
-                                        <div class="form-group">
-                                            <label for="">a. On devising and plan or any activity</label>
-                                            <input type="number" placeholder="Enter (0 - 1 point)" min="0" max="1" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">a. On devising and plan or any activity</label>
-                                            <input type="number" placeholder="Enter (0 - 1 points)" min="0" max="1" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">b. On how to organize</label>
-                                            <input type="number" placeholder="Enter (0 - 1 point)" min="0" max="1" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">c. On implementing</label>
-                                            <input type="number" placeholder="Enter (0 - 1 point)" min="0" max="1" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <h6>Knowledge of the job/work applied for (3 points)</h6>
-                                            <input type="number" placeholder="Enter (0 - 3 points)" min="0" max="3" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <h6>Logical presentation of ideas/concepts (3 points)</h6>
-                                            <input type="number" placeholder="Enter (0 - 3 points)" min="0" max="3" class="form-control">
-                                        </div>
-                                    </div>
+								<div class="row">
+									<div class="col-md-6">
+										<h6>Points earned based on interview by Panel (4 points)</h6>
+										<div class="form-group">
+											<label for="">a. On devising and plan or any activity</label>
+											<input type="number" placeholder="Enter (0 - 1 point)" min="0" max="1" class="form-control">
+										</div>
+										<div class="form-group">
+											<label for="">a. On devising and plan or any activity</label>
+											<input type="number" placeholder="Enter (0 - 1 points)" min="0" max="1" class="form-control">
+										</div>
+										<div class="form-group">
+											<label for="">b. On how to organize</label>
+											<input type="number" placeholder="Enter (0 - 1 point)" min="0" max="1" class="form-control">
+										</div>
+										<div class="form-group">
+											<label for="">c. On implementing</label>
+											<input type="number" placeholder="Enter (0 - 1 point)" min="0" max="1" class="form-control">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<h6>Knowledge of the job/work applied for (3 points)</h6>
+											<input type="number" placeholder="Enter (0 - 3 points)" min="0" max="3" class="form-control">
+										</div>
+										<div class="form-group">
+											<h6>Logical presentation of ideas/concepts (3 points)</h6>
+											<input type="number" placeholder="Enter (0 - 3 points)" min="0" max="3" class="form-control">
+										</div>
+									</div>
 
-                                    <div class="row">
-                                        <button class="btn btn-primary">Submit</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+									<div class="row">
+										<button class="btn btn-primary">Submit</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 </section>
+<input type="hidden" id="employeeInfo" value='<?= $employeeTable ?>'>
+<input type="hidden" id="positionsForInterview" value='<?= $positionsForInterview ?>'>
+<input type="hidden" id="applicantsTable" value='<?= $applicantsTable ?>'>
+<script src="<?= base_url() ?>assets/custom_js/dashboard-processes.js"></script>
 <!-- 
 <form action="" class="mt-3">
                         <div class="row">

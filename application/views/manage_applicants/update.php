@@ -16,7 +16,7 @@
 		<div class="col-md-12">
 			<div class="card">
 				<div class="card-header card-header-primary">
-					<h4 class="card-title">Create Applicant</h4>
+					<h4 class="card-title">Update Applicant</h4>
 				</div>
 				<div class="card-body">
 					<form action="">
@@ -119,11 +119,26 @@
 								let baseUrl = $('#baseUrl').val();
 								$.get(`${baseUrl}Applicants/vacantPositions`, function(resp) {
 									$('#positionAppliedForTbody').html(resp);
+
+									const formData = JSON.parse('<?= $formInput ?>')[0];
+									console.log(formData);
+									$(':checkbox').each(function() {
+										let checkboxValue = $(this).val();
+										let stringArray = checkboxValue.split(":");
+
+										let positionTitle = stringArray[0].trim();
+										let plantillaItemNo = stringArray[1].trim();
+
+										let positionAppliedForArray = formData.position_applied_for.split(',');
+										if (positionAppliedForArray.includes(plantillaItemNo)) {
+											this.checked = true;
+										}
+									});
 								});
 							});
 						</script>
 						<div class="row pull-right">
-							<button class="btn btn-primary">Create</button>
+							<button class="btn btn-primary">Update</button>
 						</div>
 					</form>
 				</div>
@@ -134,7 +149,7 @@
 <script>
 	$(document).ready(function() {
 		const formData = JSON.parse('<?= $formInput ?>')[0];
-		console.log(formData);
+		// console.log(formData);
 
 		function init() {
 			$("#firstname").val(formData.firstname);
@@ -153,6 +168,8 @@
 			$("#relevantTrainingHours").val(formData.relevant_training_hours);
 			$("#relevantExpirience").val(formData.relevant_experience);
 		}
+
+
 
 		init();
 
@@ -184,7 +201,7 @@
 			e.preventDefault();
 			let formInputs = formInput();
 			let hasPositionsChecked = false;
-
+			let positionAppliedForObjects = [];
 			$('input:checkbox').each(function() {
 				if (this.checked) {
 					let checkboxValue = $(this).val();
@@ -200,7 +217,7 @@
 					formInputs.position_title = positionTitle;
 					formInputs.plantilla_item_no = plantillaItemNo;
 					formInputs.office_name = officeName;
-					formInputs.province = province;
+					positionAppliedForObjects.push(plantillaItemNo);
 					hasPositionsChecked = true;
 				}
 			});
@@ -218,18 +235,15 @@
 			}
 
 			let baseUrl = $('#baseUrl').val();
-			$.post(`${baseUrl}Applicants/createPost`, formInputs, function() {
+			formInputs.position_applied_for = positionAppliedForObjects.toString();
+			formInputs.id = '<?= $applicant_id ?>';
+			$.post(`${baseUrl}Applicants/updatePost`, formInputs, function() {
 				Swal.fire({
 					position: 'center',
 					icon: 'success',
-					title: 'Applicant successfully created',
+					title: 'Applicant successfully updated',
 					showConfirmButton: false,
 					timer: 1500
-				});
-
-				$('input').val("");
-				$('input:checkbox').each(function() {
-					this.checked = false;
 				});
 			});
 		});

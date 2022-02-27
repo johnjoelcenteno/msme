@@ -151,10 +151,6 @@
 				latest_IPCR_rating: $("#lastestIPCR").val(),
 				relevant_training_hours: $("#relevantTrainingHours").val(),
 				relevant_experience: $("#relevantExpirience").val(),
-				position_title: "",
-				plantilla_item_no: "",
-				office_name: "",
-				province: ""
 			}
 		}
 
@@ -162,6 +158,7 @@
 			e.preventDefault();
 			let formInputs = formInput();
 			let hasPositionsChecked = false;
+			let positionAppliedForObjects = [];
 
 			$('input:checkbox').each(function() {
 				if (this.checked) {
@@ -174,15 +171,11 @@
 					let officeNameAndProvince = stringArray[2].split('-');
 					let province = officeNameAndProvince[1].trim();
 					let officeName = officeNameAndProvince[0].trim();
-
-					formInputs.position_title = positionTitle;
-					formInputs.plantilla_item_no = plantillaItemNo;
-					formInputs.office_name = officeName;
-					formInputs.province = province;
+					positionAppliedForObjects.push(plantillaItemNo);
 					hasPositionsChecked = true;
 				}
 			});
-			console.log(hasPositionsChecked);
+
 			if (hasPositionsChecked == false) {
 				Swal.fire({
 					position: 'center',
@@ -196,6 +189,7 @@
 			}
 
 			let baseUrl = $('#baseUrl').val();
+			formInputs.position_applied_for = positionAppliedForObjects.toString();
 			$.post(`${baseUrl}Applicants/createPost`, formInputs, function() {
 				Swal.fire({
 					position: 'center',
