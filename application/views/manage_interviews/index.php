@@ -1,15 +1,12 @@
 <nav aria-label="breadcrumb" role="navigation">
 	<ol class="breadcrumb ml-3">
 		<li class="breadcrumb-item"><a href="<?= base_url() ?>Dashboard">Home</a></li>
-		<li class="breadcrumb-item active"><a>Manage Employees</a></li>
+		<li class="breadcrumb-item active"><a>Manage Position</a></li>
 	</ol>
 </nav>
 <section class="ml-5 mt-5">
 	<h3>
-		<a href="<?= base_url() ?>UserAccounts/create">
-			<button class="btn btn-info float-right btn-sm"><i class="material-icons">add</i> Add User</button>
-		</a>
-		<b>Manage Users</b>
+		<b>Manage Inteviews</b>
 
 		<div id="grid" class="mt-3"></div>
 	</h3>
@@ -18,7 +15,7 @@
 <div id="window"></div>
 <script type="text/x-kendo-template" id="windowTemplate">
 	Permanently delete
-    <strong>#= lastname #, #=firstname# </strong> ?
+    <strong>#= position_title # </strong> ?
     <p></p>
     <button class="k-button" id="yesButton">Yes</button>
     <button class="k-button" id="noButton"> No</button>
@@ -36,45 +33,27 @@
 				e.container.find(".k-edit-field:first").hide();
 			},
 			columns: [{
-					field: "employee_id",
+					field: "position_id",
 					hidden: true
 				},
 				{
-					field: 'lastname',
-					title: 'Last Name'
+					field: 'position_title',
+					title: 'Position Title'
 				},
 				{
-					field: 'firstname',
-					title: 'First Name'
+					field: 'plantilla_item_no',
+					title: 'Plantilla Item No.'
 				},
 				{
-					field: 'middlename',
-					title: 'Middle Name'
+					field: 'division_cenro',
+					title: 'Place of assignment'
 				},
 				{
-					field: 'office_name',
-					title: 'Office Name',
-				},
-				{
-					field: 'user_role',
-					title: 'User Role',
-				},
-				{
-					command: [{
-							name: "edit",
-							text: {
-								edit: " "
-							},
-							template: "<a class='customEdit btn btn-success btn-round' title='Edit'><i class='material-icons'>edit</i></a>"
-						},
-						{
-							name: "delete",
-							text: {
-								edit: " "
-							},
-							template: "<a class='customDelete btn btn-danger btn-round ' title='Delete'><i class='material-icons'>delete</i></a>"
-						}
-					],
+					field: 'is_for_interview',
+					title: 'For Interview',
+					template: "<input class='checkbox' value='#= position_id#' type='checkbox' #= is_for_interview == 1 ? 'checked' : ''#>",
+					width: "150px",
+					filterable: true,
 				},
 			],
 
@@ -83,24 +62,9 @@
 
 				transport: {
 					read: {
-						url: "<?= base_url() ?>UserAccounts/getAllUsers",
+						url: "<?= base_url() ?>PositionsToInterview/getAllPositions",
 						contentType: "json",
 						type: "GET"
-					},
-					update: {
-						url: "<?= base_url() ?>ManageEmployees/update",
-						contentType: "application/json",
-						type: "POST"
-					},
-					destroy: {
-						url: "<?= base_url() ?>UserAccounts/destroy",
-						contentType: "application/json",
-						type: "POST"
-					},
-					create: {
-						url: "<?= base_url() ?>ManageEmployees/create",
-						contentType: "application/json",
-						type: "POST"
 					},
 					parameterMap: function(data, type) {
 						return type != 'read' ? JSON.stringify(data) : null;
@@ -111,33 +75,40 @@
 					data: (resp) => JSON.parse(resp),
 					total: (resp) => JSON.parse(resp).length,
 					model: {
-						id: "employee_id",
+						id: "position_id",
 						fields: {
-							employee_id: {
+							position_id: {
 								editable: false,
 								nullable: true
 							},
-							firstname: {
+							position_title: {
 								type: "string",
 								validation: {
 									required: true
 								}
 							},
-							lastname: {
+							plantilla_item_no: {
 								type: "string",
 								validation: {
 									required: true,
 									min: 1
 								}
 							},
-							office_name: {
+							division_cenro: {
 								type: "string",
 								validation: {
 									required: true,
 									min: 1
 								}
 							},
-							user_role: {
+							is_for_interview: {
+								type: "string",
+								validation: {
+									required: true,
+									min: 1
+								}
+							},
+							eligibility: {
 								type: "string",
 								validation: {
 									required: true,
@@ -153,7 +124,7 @@
 					if (type != "read") {
 						$('#grid').data("kendoGrid").dataSource.read(e);
 
-						let title = type == 'update' ? "Employee updated successfully" : "Employee deleted successfully";
+						let title = type == 'update' ? "Employee updated successfully" : "Position deleted successfully";
 						if (type == 'create') title = 'Employee created successfully';
 
 						Swal.fire({
@@ -185,8 +156,10 @@
 
 		$("#grid").on("click", ".customDelete", function(e) {
 			e.preventDefault();
+
 			var tr = $(e.target).closest("tr");
 			var data = grid.dataItem(tr);
+			console.log(data);
 			window.content(windowTemplate(data));
 			window.center().open();
 
@@ -202,10 +175,10 @@
 
 		$("#grid").on("click", ".customEdit", function() {
 			var row = $(this).closest("tr");
-			var data = grid.dataItem(row);
-			const baseUrl = $('#baseUrl').val();
-			const link = "UserAccounts/edit/" + data.id;
-			location.replace(baseUrl + `UserAccounts/update/${data.id}`);
+			let data = grid.dataItem(row);
+
+			let positionId = data.position_id;
+			location.replace("<?= base_url() ?>" + `Position/update?id=${positionId}`);
 		})
 
 		// EDITORS 
@@ -281,5 +254,34 @@
 					valuePrimitive: true
 				});
 		}
+
+		$(document).on("change", '.checkbox', function() {
+			let positionId = $(this).val();
+			let isChecked = $(this).is(":checked");
+
+			$.post("<?= base_url() ?>PositionsToInterview/updateIsForInterview", {
+				position_id: positionId,
+				is_checked: isChecked
+			}, function(resp) {
+				grid.dataSource.read();
+			});
+
+			isChecked ?
+				Swal.fire({
+					position: 'center',
+					icon: 'success',
+					title: 'Position opened for interview',
+					showConfirmButton: false,
+					timer: 1500
+				}) : Swal.fire({
+					position: 'center',
+					icon: 'success',
+					title: 'Position closed for interview',
+					showConfirmButton: false,
+					timer: 1500
+				})
+
+
+		});
 	}); // document ready end
 </script>

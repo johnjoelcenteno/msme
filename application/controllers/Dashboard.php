@@ -12,7 +12,11 @@ class Dashboard extends CI_Controller
 
     public function index()
     {
-        $data['guid'] = $this->Main_model->createGuid();
+        $data['positionsForInterview'] = json_encode($this->Main_model->get_where("position", "is_for_interview", 1) ? $this->Main_model->get_where("position", "is_for_interview", 1)->result_array() : "");
+
+        $data['employeeTable'] = json_encode($this->Main_model->get_where("employee", "credentials_id", $_SESSION['credentials_id']) ? $this->Main_model->get_where("employee", "credentials_id", $_SESSION['credentials_id'])->result_array() : "");
+        $data['applicantsTable'] = json_encode($this->Main_model->get("applicant", "applicant_id") ? $this->Main_model->get("applicant", "applicant_id")->result_array() : "");
+
 
         $params['viewName'] = 'dashboard';
         $params['pageTitle'] = '';

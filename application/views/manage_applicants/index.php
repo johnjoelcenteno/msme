@@ -1,15 +1,15 @@
 <nav aria-label="breadcrumb" role="navigation">
 	<ol class="breadcrumb ml-3">
 		<li class="breadcrumb-item"><a href="<?= base_url() ?>Dashboard">Home</a></li>
-		<li class="breadcrumb-item active"><a>Manage Employees</a></li>
+		<li class="breadcrumb-item active"><a>Manage Applicants</a></li>
 	</ol>
 </nav>
 <section class="ml-5 mt-5">
 	<h3>
-		<a href="<?= base_url() ?>UserAccounts/create">
-			<button class="btn btn-info float-right btn-sm"><i class="material-icons">add</i> Add User</button>
+		<a href="<?= base_url() ?>Applicants/create">
+			<button class="btn btn-info float-right btn-sm"><i class="material-icons">add</i> Add Applicant</button>
 		</a>
-		<b>Manage Users</b>
+		<b>Manage Applicants</b>
 
 		<div id="grid" class="mt-3"></div>
 	</h3>
@@ -36,7 +36,7 @@
 				e.container.find(".k-edit-field:first").hide();
 			},
 			columns: [{
-					field: "employee_id",
+					field: "applicant_id",
 					hidden: true
 				},
 				{
@@ -50,14 +50,6 @@
 				{
 					field: 'middlename',
 					title: 'Middle Name'
-				},
-				{
-					field: 'office_name',
-					title: 'Office Name',
-				},
-				{
-					field: 'user_role',
-					title: 'User Role',
 				},
 				{
 					command: [{
@@ -83,7 +75,7 @@
 
 				transport: {
 					read: {
-						url: "<?= base_url() ?>UserAccounts/getAllUsers",
+						url: "<?= base_url() ?>Applicants/getAllUsers",
 						contentType: "json",
 						type: "GET"
 					},
@@ -93,7 +85,7 @@
 						type: "POST"
 					},
 					destroy: {
-						url: "<?= base_url() ?>UserAccounts/destroy",
+						url: "<?= base_url() ?>Applicants/destroy",
 						contentType: "application/json",
 						type: "POST"
 					},
@@ -111,9 +103,9 @@
 					data: (resp) => JSON.parse(resp),
 					total: (resp) => JSON.parse(resp).length,
 					model: {
-						id: "employee_id",
+						id: "applicant_id",
 						fields: {
-							employee_id: {
+							applicant_id: {
 								editable: false,
 								nullable: true
 							},
@@ -130,20 +122,6 @@
 									min: 1
 								}
 							},
-							office_name: {
-								type: "string",
-								validation: {
-									required: true,
-									min: 1
-								}
-							},
-							user_role: {
-								type: "string",
-								validation: {
-									required: true,
-									min: 1
-								}
-							},
 						}
 					},
 				},
@@ -153,8 +131,8 @@
 					if (type != "read") {
 						$('#grid').data("kendoGrid").dataSource.read(e);
 
-						let title = type == 'update' ? "Employee updated successfully" : "Employee deleted successfully";
-						if (type == 'create') title = 'Employee created successfully';
+						let title = type == 'update' ? "Applicant updated successfully" : "Applicant deleted successfully";
+						if (type == 'create') title = 'Applicant created successfully';
 
 						Swal.fire({
 							position: 'center',
@@ -204,8 +182,8 @@
 			var row = $(this).closest("tr");
 			var data = grid.dataItem(row);
 			const baseUrl = $('#baseUrl').val();
-			const link = "UserAccounts/edit/" + data.id;
-			location.replace(baseUrl + `UserAccounts/update/${data.id}`);
+
+			location.replace(baseUrl + `Applicants/update/${data.id}`);
 		})
 
 		// EDITORS 

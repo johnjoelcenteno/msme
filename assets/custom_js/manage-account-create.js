@@ -1,8 +1,77 @@
 $(document).ready(function () {
+<<<<<<< HEAD
     $('form').submit(function (e) {
         e.preventDefault();
         let allCheckedVacancyToRate = [];
         let selectedUserRole = '';
+=======
+    let allCheckedVacancyToRate = [];
+	const baseUrl = $('#baseUrl').val();
+	
+	const formInputs = () => {
+		return {
+			firstname: $('#firstname').val(),
+			middlename: $('#middlename').val(),
+			lastname: $('#lastname').val(),
+			office_name: $('#penroDd').val(),
+			province: $('#officeDd').val(),
+			email_address: $('#email').val(),
+			position: $('#position').val(),
+			designation: $('#designation').val(),
+			vacant_position_to_rate: JSON.stringify(allCheckedVacancyToRate),
+			user_role: $("input[name='radio-boxes-user-role']:checked").val()
+		}
+	};
+
+	const resetAllInputs = () => {
+		$('#firstname').val("");
+		$('#middlename').val("");
+		$('#lastname').val("");
+		$('#penroDd').val("");
+		$('#officeDd').val("");
+		$('#email').val("");
+		$('#position').val("");
+		$('#designation').val("");
+		$('#penroDd').attr('disabled', true);
+		$('input:checkbox.selected-offices-text').each(function() {
+			this.checked = false;
+		});
+		$("input[name='radio-boxes-user-role']").each(function(){
+			this.checked = false;
+		});
+	}
+
+	$('form').submit(function(e){
+		e.preventDefault();
+		
+		$('input:checkbox.selected-offices-text').each(function () {
+            this.checked ? allCheckedVacancyToRate.push() : "";
+
+            if (this.checked) {
+                let provinceAndOfficeName = $(this).val().split(",");
+                const toBePushedObj = {
+                    province: provinceAndOfficeName[1],
+                    office_name: provinceAndOfficeName[0],
+                };
+                allCheckedVacancyToRate.push(toBePushedObj);
+            }
+        });
+
+		$.post(`${baseUrl}UserAccounts/createPost`, formInputs(), function(resp){
+			Swal.fire({
+				position: 'center',
+				icon: 'success',
+				title: 'User created successfully',
+				showConfirmButton: false,
+				timer: 1500
+			  });
+
+			  resetAllInputs();
+		});
+		
+	});
+    
+>>>>>>> a1df98a5f59420ff92aa271705bbff6c57110f65
 
         $('input:checkbox.selected-offices-text').each(function () {
             this.checked ? allCheckedVacancyToRate.push() : "";
@@ -66,36 +135,5 @@ $(document).ready(function () {
             toBeAppendedString += `${office_name}, ${province} | `;
         });
 
-        $('#selectedPositions').text(toBeAppendedString);
-        $('#selectAllBtn').hide();
-        $('#clearBtn').fadeOut();
-        $('#restartBtn').show();
-        $('#addPlaceVacancyBtn').hide();
-    });
-
-    $('#clearBtn').click(function () {
-        $('input:checkbox.selected-offices-text').each(function () {
-            this.checked = false;
-        });
-        $('#clearBtn').hide();
-        $('#selectAllBtn').fadeIn();
-    });
-
-    $('#selectAllBtn').click(function () {
-        $('input:checkbox.selected-offices-text').each(function () {
-            this.checked = true;
-        });
-        $('#clearBtn').fadeIn();
-        $('#selectAllBtn').hide();
-    });
-
-    $('#addPlaceVacancyBtn').click(function () {
-        $(this).hide();
-        $("#tableOfficeCollection").slideToggle('slow');
-        $('#selectAllBtn').fadeIn();
-    });
-
-    $('#addSelectedBtn').click(function () {
-        $("#tableOfficeCollection").fadeOut('slow');
     });
 });

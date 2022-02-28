@@ -1,0 +1,16 @@
+.submit-button-row {
+	display: flex;
+	justify-content: right;
+}
+
+.user-role-rb {
+	height: 20px;
+	width: 20px;
+	display: inline;
+}
+
+.h3-radio-boxes {
+	display: inline;
+	padding-left: 10px;
+	font-size: 25px;
+}
