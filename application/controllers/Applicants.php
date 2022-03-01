@@ -23,7 +23,7 @@ class Applicants extends CI_Controller
 
 	public function getAllUsers()
 	{
-		echo json_encode($this->Main_model->get("applicant", "applicant_id")->result_array());
+		echo json_encode($this->Main_model->get("applicant", "applicant_id") ? $this->Main_model->get("applicant", "applicant_id")->result_array() : "");
 	}
 
 	public function destroy()

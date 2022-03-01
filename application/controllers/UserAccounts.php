@@ -41,7 +41,7 @@ class UserAccounts extends CI_Controller
 	{
 		$returnArray = [];
 
-		$result = $this->Main_model->get_where("employee", "employee_id !=", "2");
+		$result = $this->Main_model->get_where("employee", "user_role !=", "secretariat");
 
 		foreach ($result->result_array() as $row) {
 

@@ -60,6 +60,9 @@
 
 <body>
 	<input type="hidden" id="baseUrl" value="<?= base_url() ?>">
+	<script>
+		const baseUrl = $('#baseUrl').val();
+	</script>
 	<div class="wrapper-body">
 		<div class="spacer-75"></div>
 		<?php $this->load->view("shared/navbar") ?>
