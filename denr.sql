@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 27, 2022 at 12:46 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 7.3.33
+-- Generation Time: Mar 01, 2022 at 11:35 AM
+-- Server version: 10.4.20-MariaDB
+-- PHP Version: 7.3.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -52,12 +52,7 @@ CREATE TABLE `applicant` (
 --
 
 INSERT INTO `applicant` (`applicant_id`, `firstname`, `middlename`, `lastname`, `gender`, `age`, `eligibility`, `position_designation`, `salary_grade`, `place_of_assignment`, `status_of_appointment`, `education_attainment`, `date_of_last_promotion`, `latest_IPCR_rating`, `relevant_training_hours`, `relevant_experience`, `position_applied_for`) VALUES
-(25, 'Joel', 'John', 'Centeno', 'male', '22', 'elig', 'pos', '1', 'place', '1', '2', '2', '2', '2', '2', 'testing,test2'),
-(26, 'test2', 'test2', 'test2', 'test2', 'test2', 'test2', 'test2', '1', 'test2', 'test2', 'test2', 'test2', 'test2', '1', 'test2', 'test2'),
-(27, 'test2', 'test2', 'test2', 'test2', 'test2', 'test2', 'test2', '1', 'test2', 'test2', 'test2', 'test2', 'test2', '1', 'test2', 'testing,test2'),
-(28, 'test2', 'test2', 'test2', 'test2', 'test2', 'test2', 'test2', '1', 'test2', 'test2', 'test2', 'test2', 'test2', '1', 'test2', 'testing,test2'),
-(29, 'test2', 'test2', 'test2', 'test2', 'test2', 'test2', 'test2', '1', 'test2', 'test2', 'test2', 'test2', 'test2', '1', 'test2', 'testing,test2'),
-(30, 'test', 'test', 'test', 'test', 'test', 'test', 'test', '16', 'test', 'test', 'test', 'test', 'test', '15', 'test', 'test3');
+(32, 'test', 'applicant', 'account', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', 'plantillaNo');
 
 -- --------------------------------------------------------
 
@@ -77,8 +72,9 @@ CREATE TABLE `credentials` (
 --
 
 INSERT INTO `credentials` (`credentials_id`, `username`, `password`, `user_type`) VALUES
+(1, 'tst-rsecretariat@gmail.com', '098f6bcd4621d373cade4e832627b4f6', 'regular'),
 (2, 'superadmin', '81dc9bdb52d04dc20036dbd8313ed055', 'super_admin'),
-(15, 'email@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 'regular');
+(80620178, 'joel@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 'regular');
 
 -- --------------------------------------------------------
 
@@ -126,8 +122,9 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`employee_id`, `firstname`, `middlename`, `lastname`, `office_name`, `province`, `email_address`, `position`, `designation`, `vacant_position_to_rate`, `user_role`, `credentials_id`) VALUES
-(2, 'super', '', 'admin', '0', '0', 'superadmin@gmail.com', '0', '0', '\"[]\"', '0', 2),
-(16, 'joel', 'john', 'centeno', 'PENRO Batanes', 'PENRO Batanes', 'email@gmail.com', 'position', '', '[{\"province\":\"Regional Office\",\"office_name\":\"Office of the Regional Executive Director\"},{\"province\":\"PENRO Isabela\",\"office_name\":\"Office of the PENR Officer\"}]', 'viceChairman', 15);
+(1, 'tst', 'secretariat', '', '0', '0', 'tst-secretariat@gmail.com', '0', '0', '\"[]\"', 'secretariat', 1),
+(2, 'super', '', 'admin', '0', '0', 'superadmin@gmail.com', '0', '0', '\"[]\"', 'secretariat', 2),
+(4, 'Joel', 'John', 'Centeno', 'CENRO Alcala', 'PENRO Cagayan', 'test', 'test', 'test', '[{\"province\":\"Regional Office\",\"office_name\":\"Office of the Regional Executive Director\"}]', 'endUser', 80620178);
 
 -- --------------------------------------------------------
 
@@ -213,9 +210,7 @@ CREATE TABLE `position` (
 --
 
 INSERT INTO `position` (`position_id`, `position_title`, `plantilla_item_no`, `office_name`, `province`, `Salary_job_pay_scale`, `education`, `training`, `expirience`, `eligibility`, `competency`, `is_vacant`, `is_for_interview`) VALUES
-(10, 'test', 'testing', 'Office of the PENR Officer', 'PENRO Isabela', 1, 'test', 'test', 'test', 'test', 'test', b'1', 1),
-(11, 'test2', 'test2', 'Finance Division', 'Regional Office', 13, 'test2', 'test2', 'test2', 'test2', 'test2', b'1', 1),
-(12, 'test3', 'test3', 'Office of the Regional Executive Director', 'Regional Office', 15, 'test3', 'test3', 'test3', 'test3', 'test3', b'1', 1);
+(13, 'testing', 'plantillaNo', 'Office of the Regional Executive Director', 'Regional Office', 14, 'e', '1', '1', '1', '1', b'1', 1);
 
 --
 -- Indexes for dumped tables
@@ -265,13 +260,13 @@ ALTER TABLE `position`
 -- AUTO_INCREMENT for table `applicant`
 --
 ALTER TABLE `applicant`
-  MODIFY `applicant_id` int(65) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `applicant_id` int(65) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `credentials`
 --
 ALTER TABLE `credentials`
-  MODIFY `credentials_id` int(65) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `credentials_id` int(65) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80620179;
 
 --
 -- AUTO_INCREMENT for table `division`
@@ -283,7 +278,7 @@ ALTER TABLE `division`
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `employee_id` int(65) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `employee_id` int(65) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `offices`
@@ -295,7 +290,7 @@ ALTER TABLE `offices`
 -- AUTO_INCREMENT for table `position`
 --
 ALTER TABLE `position`
-  MODIFY `position_id` int(65) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `position_id` int(65) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
