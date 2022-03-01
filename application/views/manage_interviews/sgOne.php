@@ -81,29 +81,10 @@
                                 <h5>B. Potential (10 points)</h5>
 
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <h6>Points earned based on interview by Panel (4 points)</h6>
+                                    <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="">A. On devising and plan or any activity</label>
-                                            <input required type="number" id="On_devising_and_plan_or_any_activity" placeholder="Enter (0 - 1 point)" min="0" max="1" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">B. On how to organize</label>
-                                            <input required type="number" id="On_how_to_organize" placeholder="Enter (0 - 1 points)" min="0" max="1" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">C. On implementing</label>
-                                            <input required type="number" id="On_implementing" placeholder="Enter (0 - 1 point)" min="0" max="1" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">D. On monitoring</label>
-                                            <input required type="number" id="On_monitoring" placeholder="Enter (0 - 1 point)" min="0" max="1" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <h6>Knowledge of the job/work applied for (3 points)</h6>
-                                            <input required type="number" id="Knowledge_of_the_job" placeholder="Enter (0 - 3 points)" min="0" max="3" class="form-control">
+                                            <h6>Knowledge of the job/work applied for (7 points)</h6>
+                                            <input required type="number" id="Knowledge_of_the_job" placeholder="Enter (0 - 7 points)" min="0" max="7" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <h6>Logical presentation of ideas/concepts (3 points)</h6>
@@ -159,16 +140,12 @@
             let Agreeableness = parseInt($('#Agreeableness').val());
             let Openness_to_experience = parseInt($('#Openness_to_experience').val());
             let Emotional_Stability = parseInt($('#Emotional_Stability').val());
-            let On_devising_and_plan_or_any_activity = parseInt($('#On_devising_and_plan_or_any_activity').val());
-            let On_how_to_organize = parseInt($('#On_how_to_organize').val());
-            let On_implementing = parseInt($('#On_implementing').val());
-            let On_monitoring = parseInt($('#On_monitoring').val());
             let Knowledge_of_the_job = parseInt($('#Knowledge_of_the_job').val());
             let Logical_presentation_of_ideas = parseInt($('#Logical_presentation_of_ideas').val());
             let remarks = $('#remarks').val();
 
 
-            const total = Conscientiousness + Extraversion + Agreeableness + Openness_to_experience + Emotional_Stability + On_devising_and_plan_or_any_activity + On_how_to_organize + On_implementing + On_monitoring + Knowledge_of_the_job + Logical_presentation_of_ideas;
+            const total = Conscientiousness + Extraversion + Agreeableness + Openness_to_experience + Emotional_Stability + Knowledge_of_the_job + Logical_presentation_of_ideas;
             const answers = JSON.stringify(getFormInputs());
 
             const applicant_id = $('#applicant_id').val();
@@ -180,6 +157,7 @@
                 total,
                 answers
             };
+
             const sendPost = () => {
                 $.post(`${baseUrl}Interview/sendPost`, postObj, function() {
                     Swal.fire({

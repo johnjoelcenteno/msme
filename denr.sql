@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 01, 2022 at 11:35 AM
+-- Generation Time: Mar 01, 2022 at 03:40 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 7.3.29
 
@@ -47,13 +47,6 @@ CREATE TABLE `applicant` (
   `position_applied_for` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `applicant`
---
-
-INSERT INTO `applicant` (`applicant_id`, `firstname`, `middlename`, `lastname`, `gender`, `age`, `eligibility`, `position_designation`, `salary_grade`, `place_of_assignment`, `status_of_appointment`, `education_attainment`, `date_of_last_promotion`, `latest_IPCR_rating`, `relevant_training_hours`, `relevant_experience`, `position_applied_for`) VALUES
-(32, 'test', 'applicant', 'account', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', 'plantillaNo');
-
 -- --------------------------------------------------------
 
 --
@@ -73,28 +66,7 @@ CREATE TABLE `credentials` (
 
 INSERT INTO `credentials` (`credentials_id`, `username`, `password`, `user_type`) VALUES
 (1, 'tst-rsecretariat@gmail.com', '098f6bcd4621d373cade4e832627b4f6', 'regular'),
-(2, 'superadmin', '81dc9bdb52d04dc20036dbd8313ed055', 'super_admin'),
-(80620178, 'joel@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 'regular');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `division`
---
-
-CREATE TABLE `division` (
-  `division_id` int(11) NOT NULL,
-  `division_name` varchar(65) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `division`
---
-
-INSERT INTO `division` (`division_id`, `division_name`) VALUES
-(1, 'Technical Services Division'),
-(2, 'Manage Services Division'),
-(3, 'Office of the PENR Officer');
+(2, 'superadmin', '81dc9bdb52d04dc20036dbd8313ed055', 'super_admin');
 
 -- --------------------------------------------------------
 
@@ -122,9 +94,22 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`employee_id`, `firstname`, `middlename`, `lastname`, `office_name`, `province`, `email_address`, `position`, `designation`, `vacant_position_to_rate`, `user_role`, `credentials_id`) VALUES
-(1, 'tst', 'secretariat', '', '0', '0', 'tst-secretariat@gmail.com', '0', '0', '\"[]\"', 'secretariat', 1),
-(2, 'super', '', 'admin', '0', '0', 'superadmin@gmail.com', '0', '0', '\"[]\"', 'secretariat', 2),
-(4, 'Joel', 'John', 'Centeno', 'CENRO Alcala', 'PENRO Cagayan', 'test', 'test', 'test', '[{\"province\":\"Regional Office\",\"office_name\":\"Office of the Regional Executive Director\"}]', 'endUser', 80620178);
+(1, 'test', 'secretariat', 'account', '\"\"', '\"\"', 'secretariat@gmail.com', 'test', 'test', '\"\"', 'regular', 1),
+(2, 'test', 'admin', 'account', 'test', 'test', 'admin', 'test', 'test', '\"\"', 'super_admin', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `interview`
+--
+
+CREATE TABLE `interview` (
+  `interview_id` int(65) NOT NULL,
+  `applicant_id` int(65) NOT NULL,
+  `plantilla_item_no` varchar(65) NOT NULL,
+  `total` int(65) NOT NULL,
+  `answers` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`answers`))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -206,13 +191,6 @@ CREATE TABLE `position` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `position`
---
-
-INSERT INTO `position` (`position_id`, `position_title`, `plantilla_item_no`, `office_name`, `province`, `Salary_job_pay_scale`, `education`, `training`, `expirience`, `eligibility`, `competency`, `is_vacant`, `is_for_interview`) VALUES
-(13, 'testing', 'plantillaNo', 'Office of the Regional Executive Director', 'Regional Office', 14, 'e', '1', '1', '1', '1', b'1', 1);
-
---
 -- Indexes for dumped tables
 --
 
@@ -229,16 +207,16 @@ ALTER TABLE `credentials`
   ADD PRIMARY KEY (`credentials_id`);
 
 --
--- Indexes for table `division`
---
-ALTER TABLE `division`
-  ADD PRIMARY KEY (`division_id`);
-
---
 -- Indexes for table `employee`
 --
 ALTER TABLE `employee`
   ADD PRIMARY KEY (`employee_id`);
+
+--
+-- Indexes for table `interview`
+--
+ALTER TABLE `interview`
+  ADD PRIMARY KEY (`interview_id`);
 
 --
 -- Indexes for table `offices`
@@ -269,16 +247,16 @@ ALTER TABLE `credentials`
   MODIFY `credentials_id` int(65) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80620179;
 
 --
--- AUTO_INCREMENT for table `division`
---
-ALTER TABLE `division`
-  MODIFY `division_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `employee_id` int(65) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `employee_id` int(65) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `interview`
+--
+ALTER TABLE `interview`
+  MODIFY `interview_id` int(65) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `offices`

@@ -70,9 +70,8 @@ $(document).ready(function () {
 
 
 	// MAP OUT TO THE UI 
-	console.log(dashboardDropDowns);
 	dashboardDropDowns.forEach(x => {
-		console.log(x);
+
 
 		const headerTemplate = `
 			<div class="col-md-6">
@@ -93,7 +92,7 @@ $(document).ready(function () {
 					<h4 class="font-weight-bold mx-4">${applicant.firstname} ${applicant.middlename} ${applicant.lastname}</h4>
 				</div>
 				<div class="col-md-8">
-					<button class="btn btn-success btn-sm" applicant_id="${applicant.applicant_id}" value="${x.salaryGrade}">Interview</button>
+					<button class="btn btn-success btn-sm interviewBtn" applicant_id="${applicant.applicant_id}" salary_grade="${x.salaryGrade}" plantilla_no="${x.plantillaNumber}">Interview</button>
 				</div>
 			</div>
 		`;
@@ -108,6 +107,19 @@ $(document).ready(function () {
 
 		const htmlStringCompilation = headerTemplate + bodyTemplate + cardFooter;
 		$('#iteratePositionsToApplyHere').append(htmlStringCompilation);
+	});
+
+
+	$('.interviewBtn').click(function () {
+		let salary_grade = $(this).attr('salary_grade');
+		let applicant_id = $(this).attr('applicant_id');
+		let plantilla_no = $(this).attr('plantilla_no');
+		console.log(salary_grade);
+		const interviewLink = salary_grade <= 14 ?
+			`${baseUrl}Interview/firstForm?salary_grade=${salary_grade}&applicant_id=${applicant_id}&plantilla_no=${plantilla_no}` :
+			`${baseUrl}Interview/secondForm?salary_grade=${salary_grade}&applicant_id=${applicant_id}&plantilla_no=${plantilla_no}`;
+
+		location.replace(interviewLink);
 	});
 });
 
