@@ -132,8 +132,27 @@
 </section>
 <input type="hidden" id="applicant_id" value="<?= $applicant_id ?>">
 <input type="hidden" id="plantilla_no" value="<?= $plantilla_no ?>">
+<input type="hidden" id="applicantTable" value='<?= json_encode($applicantTable) ?>'>
 <script>
     $(document).ready(function() {
+        const removePlantillaNumberAndUpdatePositionAppliedFor = () => {
+            let plantillaNo = $('#plantilla_no').val();
+            const applicantTable = JSON.parse($('#applicantTable').val());
+            let positionAppliedFor = applicantTable.position_applied_for.split(',');
+
+            let indexOfPlantillaNoInPositionAppliedFor = positionAppliedFor.findIndex(x => x == plantillaNo);
+
+            positionAppliedFor.splice(indexOfPlantillaNoInPositionAppliedFor, 1);
+
+            positionAppliedFor = positionAppliedFor.map(x => x.trim()).join();
+            const postObj = {
+                applicant_id: $('#applicant_id').val(),
+                position_applied_for: positionAppliedFor
+            };
+
+            $.post(`${baseUrl}Interview/updatePlantillaNumberOfApplicant`, postObj);
+        }
+
         $('form').submit(function(e) {
             e.preventDefault();
 
@@ -205,6 +224,7 @@
                 confirmButtonText: 'Confirm'
             }).then((result) => {
                 if (result.isConfirmed) {
+                    removePlantillaNumberAndUpdatePositionAppliedFor();
                     sendPost();
                 }
             });

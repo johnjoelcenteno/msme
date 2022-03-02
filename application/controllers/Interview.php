@@ -42,6 +42,14 @@ class Interview extends CI_Controller
         $this->Main_model->_insert("interview", $insert);
     }
 
+    public function updatePlantillaNumberOfApplicant()
+    {
+        $applicant_id = $this->input->post('applicant_id');
+
+        $update['position_applied_for'] = $this->input->post('position_applied_for'); // will receive what is left after client side processes
+        $this->Main_model->_update('applicant', 'applicant_id', $applicant_id, $update);
+    }
+
     public function firstForm()
     {
         $salaryGrade = $this->input->get('salary_grade');

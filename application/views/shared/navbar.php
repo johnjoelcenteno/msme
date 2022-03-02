@@ -20,7 +20,7 @@ $fullName = $this->Main_model->getFullName('employee', "credentials_id", $_SESSI
 		</div>
 		<div class="navbar-collapse collapse">
 
-			<ul class="nav navbar-nav navbar-right ml-auto" style="width: 1000px">
+			<ul class="nav navbar-nav navbar-right ml-auto" style="width: 1200px">
 
 				<?php if ($userType == 'super_admin' || $userType == 'regular') { ?>
 					<li class="dropdown nav-item">
