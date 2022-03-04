@@ -1,6 +1,5 @@
 $(document).ready(function () {
     $('#grid').kendoGrid({
-        toolbar: ['search'],
         sortable: true,
         pageable: true,
         editable: "popup",
@@ -14,6 +13,10 @@ $(document).ready(function () {
             hidden: true
         },
         {
+            field: 'employee_fullname',
+            title: 'Employee name'
+        },
+        {
             field: 'applicant_fullname',
             title: 'Applicant Name'
         },
@@ -21,17 +24,8 @@ $(document).ready(function () {
             field: 'title_location',
             title: 'Place of vacancy'
         },
-        {
-            command: [{
-                name: "edit",
-                text: {
-                    edit: " "
-                },
-                template: "<a class='customEdit btn btn-success btn-round' title='Edit'><i class='material-icons'>edit</i></a>"
-            },
-            ],
-        },
         ],
+        dataBound: (e) => setTimeout(() => $('#grid').data("kendoGrid").dataSource.read(e), 5000),
 
         dataSource: {
             pageSize: 5,
@@ -103,17 +97,15 @@ $(document).ready(function () {
         }
     });
 
+    $("#addEmployee").click(function () {
+        var grid = $("#grid").data("kendoGrid");
+        grid.addRow();
+    });
+
+
     var grid = $("#grid").data("kendoGrid");
 
-    $("#grid").on("click", ".customEdit", function () {
-        var row = $(this).closest("tr");
-        var data = grid.dataItem(row);
-        const baseUrl = $('#baseUrl').val();
-        let plantilla_no = data.plantilla_item_no;
-        let applicant_id = data.applicant_id;
 
-        location.replace(`${baseUrl}ComprehensiveEvaluationResults/addOtherScores?applicant_id=${applicant_id}&plantilla_no=${plantilla_no}`);
-    })
 
     // EDITORS 
     function provinceDropDownEditor(container, options) {

@@ -205,6 +205,7 @@
                 total_score_b,
                 answers
             };
+
             const sendPost = () => {
                 $.post(`${baseUrl}Interview/sendPost`, postObj, function() {
                     Swal.fire({

@@ -85,8 +85,23 @@ class UserAccounts extends CI_Controller
 		echo json_encode($this->Main_model->get_where("position", "office_id", $officeId)->result_array());
 	}
 
+	public function determineIfProvincialSecretariat()
+	{
+		$employeeTable = $this->Main_model->get_where("employee", "credentials_id", $_SESSION['credentials_id'])->row();
+		if ($employeeTable->user_role == 'secretariat' && $employeeTable->office_name == 'Management Services Division') {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+
 	public function create()
 	{
+		$data['isProvincialSecretariat'] = $this->determineIfProvincialSecretariat();
+
+		$data['provinceOfSecretariat'] = $this->Main_model->get_where("employee", "credentials_id", $_SESSION['credentials_id'])->row()->province;
+		$data['availableOfficeNames'] = $this->Main_model->get_where("offices", "province", $data['provinceOfSecretariat']);
+
 		$data['guid'] = $this->Main_model->createGuid();
 		$data['listOfOffices'] = $this->Main_model->get('offices', 'office_id');
 

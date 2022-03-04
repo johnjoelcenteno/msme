@@ -12,12 +12,8 @@ class ComprehensiveEvaluationResults extends CI_Controller
 
     public function index()
     {
-        $data['positionsForInterview'] = json_encode($this->Main_model->get_where("position", "is_for_interview", 1) ? $this->Main_model->get_where("position", "is_for_interview", 1)->result_array() : "");
-
-        $data['employeeTable'] = json_encode($this->Main_model->get_where("employee", "credentials_id", $_SESSION['credentials_id']) ? $this->Main_model->get_where("employee", "credentials_id", $_SESSION['credentials_id'])->result_array() : "");
-        $data['applicantsTable'] = json_encode($this->Main_model->get_where("interview", "is_completed !=", 1) ? $this->Main_model->get_where("interview", "is_completed !=", 1)->result_array() : "");
-
-        $params['viewName'] = 'comprehensive_evaluation_results/index';
+        $data = array();
+        $params['viewName'] = 'manage_interviews/manageComprehensiveEvaluation';
         $params['pageTitle'] = '';
         $params['renderedData'] = $data;
 
@@ -44,6 +40,7 @@ class ComprehensiveEvaluationResults extends CI_Controller
     public function addOtherScores()
     {
         $applicant_id = $this->input->get('applicant_id');
+        $plantillaNo = $this->input->get('plantilla_no');
         $data['positionsForInterview'] = json_encode($this->Main_model->get_where("position", "is_for_interview", 1) ? $this->Main_model->get_where("position", "is_for_interview", 1)->result_array() : "");
 
         $data['employeeTable'] = json_encode($this->Main_model->get_where("employee", "credentials_id", $_SESSION['credentials_id']) ? $this->Main_model->get_where("employee", "credentials_id", $_SESSION['credentials_id'])->result_array() : "");
@@ -51,6 +48,11 @@ class ComprehensiveEvaluationResults extends CI_Controller
 
         $data['applicant_info'] = $this->Main_model->get_where('applicant', 'applicant_id', $applicant_id)->row();
 
+        $interviewWhere['plantilla_item_no'] = $plantillaNo;
+        $interviewWhere['applicant_id'] = $applicant_id;
+        $data['interviewTable'] = json_encode($this->Main_model->multiple_where("interview", $interviewWhere)->row());
+
+        // $this->Main_model->showNormalArray($data['interviewTable']);
         $params['viewName'] = 'comprehensive_evaluation_results/addScores';
         $params['pageTitle'] = '';
         $params['renderedData'] = $data;

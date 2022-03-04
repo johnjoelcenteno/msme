@@ -5,9 +5,9 @@ class Credentials_model extends CI_Model
 {
     function getUserId()
     {
-        $userTable = $this->Main_model->get_where('users', 'credentials_id', $_SESSION['credentials_id'])->row();
+        $userTable = $this->Main_model->get_where('employee', 'credentials_id', $_SESSION['credentials_id'])->row();
 
-        return $userTable->users_id;
+        return $userTable->employee_id;
     }
 
     function getUserType()

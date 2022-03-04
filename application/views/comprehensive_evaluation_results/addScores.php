@@ -38,7 +38,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="">Education</label>
-                                            <input type="text" id="education" placeholder="Enter points here" class="form-control">
+                                            <input type="text" id="education" min="0" max="12" placeholder="(0 - 12 pts) Enter points here" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -47,43 +47,43 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="">Performance</label>
-                                            <input type="text" id="performance" placeholder="Enter points here" class="form-control">
+                                            <input type="text" id="performance" min="0" max="30" placeholder="(0 - 30 pts) Enter points here" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="">Training</label>
-                                            <input type="text" id="training" placeholder="Enter points here" class="form-control">
+                                            <input type="text" id="training" min="0" max="8" placeholder="(0 - 8 pts) Enter points here" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="">Experience</label>
-                                            <input type="text" id="experience" placeholder="Enter points here" class="form-control">
+                                            <input type="text" id="experience" min="0" max="15" placeholder="(0 - 15 pts) Enter points here" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="">Written Skill/ Exam</label>
-                                            <input type="text" id="writtenSkill" placeholder="Enter points here" class="form-control">
+                                            <input type="text" id="writtenSkill" min="0" max="15" placeholder="(0 - 15 pts) Enter points here" class="form-control">
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-4" style="display:none">
                                         <div class="form-group">
                                             <label for="">Total</label>
-                                            <input type="text" id="total" placeholder="Enter points here" class="form-control">
+                                            <input disabled type="text" id="total" placeholder="Enter points here" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Awards and Outstanding Achievement</label>
-                                            <input type="text" id="awards" placeholder="Enter points here" class="form-control">
+                                            <input type="text" id="awards" min="0" max="5" placeholder="(0 - 5 pts) Enter points here" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Remarks</label>
                                             <input type="text" id="comprehensive_remarks" placeholder="Enter Remarks here" class="form-control">
@@ -111,7 +111,10 @@
 
 <script>
     $(document).ready(function() {
+
         const interviewTable = JSON.parse($('#interviewTable').val())[0];
+        const totalInterviewScore = interviewTable.total;
+        $('#total').val(totalInterviewScore);
         const interview_id = interviewTable.interview_id;
         const getFormInputs = () => {
             return {
@@ -127,7 +130,7 @@
             };
         }
 
-        const total = () => parseInt($('#education').val()) + parseInt($('#performance').val()) + parseInt($('#training').val()) + parseInt($('#experience').val()) + parseInt($('#writtenSkill').val()) + parseInt($('#total').val()) + parseInt($('#awards').val());
+        const totalFormScore = () => parseInt($('#education').val()) + parseInt($('#performance').val()) + parseInt($('#training').val()) + parseInt($('#experience').val()) + parseInt($('#writtenSkill').val()) + parseInt($('#awards').val());
 
 
         const sendPost = () => {
@@ -150,7 +153,7 @@
             e.preventDefault();
 
             Swal.fire({
-                title: 'Total score: ' + total(),
+                title: 'Total score: ' + totalFormScore(),
                 icon: 'info',
                 showCancelButton: true,
                 confirmButtonColor: '#4CAF50',

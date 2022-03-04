@@ -3,6 +3,7 @@ $this->load->model("Credentials_model");
 $this->load->model("Main_model");
 $userType = $this->Credentials_model->getUserType();
 $fullName = $this->Main_model->getFullName('employee', "credentials_id", $_SESSION['credentials_id']);
+$userRole = $this->Main_model->get_where("employee", "credentials_id", $_SESSION['credentials_id'])->row()->user_role;
 ?>
 
 <div class="navbar fixed-top navbar-expand-lg bg-success top-margin">
@@ -24,9 +25,13 @@ $fullName = $this->Main_model->getFullName('employee', "credentials_id", $_SESSI
 
 				<?php if ($userType == 'super_admin' || $userType == 'regular') { ?>
 					<li class="dropdown nav-item">
-						<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-							<i class="material-icons">settings</i> Utility Management
-						</a>
+
+						<?php if ($userRole == 'secretariat') { ?>
+							<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+								<i class="material-icons">settings</i> Utility Management
+							</a>
+						<?php } ?>
+
 						<div class="dropdown-menu dropdown-with-icons">
 
 							<a title="Official Receipt" class="dropdown-item" href="<?= base_url() ?>UserAccounts">
@@ -63,16 +68,20 @@ $fullName = $this->Main_model->getFullName('employee', "credentials_id", $_SESSI
 						</a>
 					</li>
 
-					<li class="nav-item">
-						<a href="<?= base_url() ?>ComprehensiveEvaluationResults" class="nav-link">
-							<i class="material-icons">description</i> Comprehensive Evaluation Results Mgt.
-						</a>
-					</li>
+					<?php if ($userRole == 'secretariat') { ?>
+						<li class="nav-item">
+							<a href="<?= base_url() ?>ComprehensiveEvaluationResults" class="nav-link">
+								<i class="material-icons">description</i> Comprehensive Evaluation Results Mgt.
+							</a>
+						</li>
+					<?php } ?>
 
 					<li class="dropdown nav-item">
-						<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-							<i class="material-icons">summarize</i> Reports
-						</a>
+						<?php if ($userRole == 'secretariat') { ?>
+							<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+								<i class="material-icons">summarize</i> Reports
+							</a>
+						<?php } ?>
 						<div class="dropdown-menu dropdown-with-icons">
 
 							<a title="Summary of interview scores" class="dropdown-item" href="<?= base_url() ?>Reports">

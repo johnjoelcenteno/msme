@@ -57,19 +57,26 @@
 							<div class="form-group col-md-4">
 								<label for="">Select Office</label>
 								<select name="" id="officeDd" class="form-control">
-									<option value="">select office</option>
-									<option value="PENRO Batanes">PENRO Batanes</option>
-									<option value="PENRO Cagayan">PENRO Cagayan</option>
-									<option value="PENRO Isabela">PENRO Isabela</option>
-									<option value="PENRO Nueva Vizcaya">PENRO Nueva Vizcaya</option>
-									<option value="PENRO Quirino">PENRO Quirino</option>
-									<option value="Regional Office">Regional Office</option>
+									<?php if ($isProvincialSecretariat == "1") { ?>
+										<option value="<?= $provinceOfSecretariat ?>"><?= $provinceOfSecretariat ?></option>
+									<?php } else { ?>
+										<option value="">Select office</option>
+										<option value="PENRO Batanes">PENRO Batanes</option>
+										<option value="PENRO Cagayan">PENRO Cagayan</option>
+										<option value="PENRO Isabela">PENRO Isabela</option>
+										<option value="PENRO Nueva Vizcaya">PENRO Nueva Vizcaya</option>
+										<option value="PENRO Quirino">PENRO Quirino</option>
+										<option value="Regional Office">Regional Office</option>
+									<?php } ?>
 								</select>
 							</div>
 							<div class="form-group col-md-4">
 								<label for="">Select PENRO/CENRO/Regional Office</label>
-								<select name="" id="penroDd" class="form-control" disabled>
+								<select name="" id="penroDd" class="form-control">
 									<option value="">Select PENRO/CENRO/Regional Office</option>
+									<?php foreach ($availableOfficeNames->result() as $row) { ?>
+										<option value="<?= $row->office_name ?>"><?= $row->office_name ?></option>
+									<?php } ?>
 								</select>
 							</div>
 
