@@ -24,7 +24,6 @@ class Interview extends CI_Controller
         $data['positionTable'] = $positionsTable;
         $data['applicant_name'] = "$applicantTable->firstname $applicantTable->middlename $applicantTable->lastname";
 
-
         $params['viewName'] = 'manage_interviews/sgFifteen';
         $params['pageTitle'] = '';
         $params['renderedData'] = $data;
@@ -36,9 +35,14 @@ class Interview extends CI_Controller
     public function sendPost()
     {
         $insert['applicant_id'] = $this->input->post('applicant_id');
+        $insert['applicant_info'] = json_encode($this->Main_model->get_where("applicant", "applicant_id", $this->input->post('applicant_id'))->result_array());
         $insert['plantilla_item_no'] = $this->input->post('plantilla_item_no');
+        $insert['total_score_a'] = $this->input->post('total_score_a');
+        $insert['total_score_b'] = $this->input->post('total_score_b');
         $insert['total'] = $this->input->post('total');
         $insert['answers'] = $this->input->post('answers');
+        $insert['date_interviewed'] = date("Y-m-d");
+        $insert['dd_title'] = $this->input->post("dd_title");
         $this->Main_model->_insert("interview", $insert);
     }
 

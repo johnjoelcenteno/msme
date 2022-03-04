@@ -58,13 +58,13 @@ $fullName = $this->Main_model->getFullName('employee', "credentials_id", $_SESSI
 					</li>
 
 					<li class="nav-item">
-						<a href="#" class="nav-link">
+						<a href="<?= base_url() ?>InterviewRatingManagement" class="nav-link">
 							<i class="material-icons">account_circle</i> Inteview Rating Management
 						</a>
 					</li>
 
 					<li class="nav-item">
-						<a href="#" class="nav-link">
+						<a href="<?= base_url() ?>ComprehensiveEvaluationResults" class="nav-link">
 							<i class="material-icons">description</i> Comprehensive Evaluation Results Mgt.
 						</a>
 					</li>
@@ -75,12 +75,12 @@ $fullName = $this->Main_model->getFullName('employee', "credentials_id", $_SESSI
 						</a>
 						<div class="dropdown-menu dropdown-with-icons">
 
-							<a title="Official Receipt" class="dropdown-item" href="/OR">
-								<i class="material-icons">receipt</i> Individual Interview Rating Sheet
+							<a title="Summary of interview scores" class="dropdown-item" href="<?= base_url() ?>Reports">
+								<i class="material-icons">playlist_add</i> Summary Interview Rating Sheet
 							</a>
 
-							<a title="Journal Voucher" class="dropdown-item" href="/JV">
-								<i class="material-icons">playlist_add</i> Summary Interview Rating Sheet
+							<a title="Official Receipt" class="dropdown-item" href="/OR">
+								<i class="material-icons">receipt</i> Individual Interview Rating Sheet
 							</a>
 
 							<a title="Cash Disbursement Voucher" class="dropdown-item" href="/CV">

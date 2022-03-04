@@ -43,3 +43,7 @@
             </div>
         </div>
 </section>
+<input type="hidden" id="employeeInfo" value='<?= $employeeTable ?>'>
+<input type="hidden" id="positionsForInterview" value='<?= $positionsForInterview ?>'>
+<input type="hidden" id="applicantsTable" value='<?= $applicantsTable ?>'>
+<script src="<?= base_url() ?>assets/custom_js/dashboard-processes.js"></script>

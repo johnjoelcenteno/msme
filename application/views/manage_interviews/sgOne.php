@@ -163,7 +163,8 @@
             let Logical_presentation_of_ideas = parseInt($('#Logical_presentation_of_ideas').val());
             let remarks = $('#remarks').val();
 
-
+            const total_score_a = Emotional_Stability + Openness_to_experience + Agreeableness + Extraversion + Conscientiousness;
+            const total_score_b = Knowledge_of_the_job + Logical_presentation_of_ideas;
             const total = Conscientiousness + Extraversion + Agreeableness + Openness_to_experience + Emotional_Stability + Knowledge_of_the_job + Logical_presentation_of_ideas;
             const answers = JSON.stringify(getFormInputs());
 
@@ -174,6 +175,8 @@
                 applicant_id,
                 plantilla_item_no,
                 total,
+                total_score_a,
+                total_score_b,
                 answers
             };
 
@@ -188,7 +191,7 @@
                     });
 
                     setTimeout(() => {
-                        location.replace(`${baseUrl}Dashboard`);
+                        location.replace(`${baseUrl}InterviewRatingManagement`);
                     }, 2000);
                 });
             }

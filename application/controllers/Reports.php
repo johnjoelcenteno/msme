@@ -12,9 +12,8 @@ class Reports extends CI_Controller
 
     public function index()
     {
-        $data['provinceAndDivision'] = $this->Credentials_model->getProvinceDivision();
-
-        $params['viewName'] = 'reports';
+        $data = array();
+        $params['viewName'] = 'manage_reports/reports';
         $params['pageTitle'] = '';
         $params['renderedData'] = $data;
 
@@ -22,54 +21,24 @@ class Reports extends CI_Controller
         $this->view_manipulation->renderViewWithLayout();
     }
 
-    function determineIfReportAlreadySubmitted()
+    public function getAllInterviews()
     {
-        $where['created_by'] = $this->Credentials_model->getUserId();
-        $where['date_created'] = date("Y-m-d");
-        $this->db->select("*");
-        $this->db->from("report_logs");
-        $this->db->join("reports", "report_logs.reference_number = reports.reference_number");
-        $this->db->where($where);
-        $result = $this->db->get()->result_array();
-
-        echo count($result) != 0 ? json_encode($result) : "empty";
+        $query = $this->Main_model->get("interview", "interview_id") ? $this->Main_model->get("interview", "interview_id")->result_array() : "";
+        echo json_encode($query);
     }
 
-    public function create()
+    public function applicant_total_scores()
     {
-        $userId = $this->Credentials_model->getUserId();
-        $referenceNumber = $this->input->post("reference_number");
+        $interviewId = $this->uri->segment(3);
 
-        // populate report_logs table
-        $reportLogs['report_logs_id'] = $this->Main_model->createGuid();
-        $reportLogs['reference_number'] = $referenceNumber;
-        $reportLogs['date_created'] = date("Y-m-d");
-        $reportLogs['created_by'] = $userId;
+        $data['interview_info'] = $this->Main_model->get_where('interview', 'interview_id', $interviewId);
+        // $this->Main_model->showNormalArray($data['interview_info']->result());
 
-        $this->Main_model->_insert("report_logs", $reportLogs);
+        $params['viewName'] = 'manage_reports/summary_interview_table';
+        $params['pageTitle'] = '';
+        $params['renderedData'] = $data;
 
-        $reports['reports_id'] = $this->Main_model->createGuid();
-        $reports['province_id'] = $this->input->post('province_id');
-        $reports['division_id'] = $this->input->post('division_id');
-        $reports['report_details'] = json_encode($_POST);
-        $reports['reference_number'] = $referenceNumber;
-
-        $this->Main_model->_insert("reports", $reports);
-    }
-
-    public function update()
-    {
-        $userId = $this->Credentials_model->getUserId();
-        $referenceNumber = $this->input->post("reference_number");
-
-        // populate report_logs table
-        $reportLogs['date_modified'] = date("Y-m-d");
-        $reportLogs['modified_by'] = $userId;
-
-        $this->Main_model->_update("report_logs", "reference_number", $referenceNumber, $reportLogs);
-
-        $reports['report_details'] = json_encode($_POST);
-
-        $this->Main_model->_update("reports", "reference_number", $referenceNumber, $reports);
+        $this->load->library('view_manipulation', $params);
+        $this->view_manipulation->renderViewWithLayout();
     }
 }

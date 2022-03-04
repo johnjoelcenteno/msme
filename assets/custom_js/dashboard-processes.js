@@ -24,7 +24,7 @@ $(document).ready(function () {
 
 				// configure dashboard drop down
 				let dashboardDdTitleOfficeName = isInVacantPositionOfficeName; // third dd element
-				let dashboardDdTitleProvinceName = isInVacantPositionOfficeName; // fourth dd element
+				let dashboardDdTitleProvinceName = isInVacantPositionProvince; // fourth dd element
 
 				const objForDashboardDd = {
 					title: `${ddTitlePositionTitle} : ${ddTitlePlantillaItemNo} : ${dashboardDdTitleOfficeName} - ${dashboardDdTitleProvinceName}`,
@@ -92,7 +92,7 @@ $(document).ready(function () {
 					<h4 class="font-weight-bold mx-4">${applicant.firstname} ${applicant.middlename} ${applicant.lastname}</h4>
 				</div>
 				<div class="col-md-8">
-					<button class="btn btn-success btn-sm interviewBtn" applicant_id="${applicant.applicant_id}" salary_grade="${x.salaryGrade}" plantilla_no="${x.plantillaNumber}">Interview</button>
+					<button class="btn btn-success btn-sm interviewBtn" dropdown_title="${x.title}" applicant_id="${applicant.applicant_id}" salary_grade="${x.salaryGrade}" plantilla_no="${x.plantillaNumber}">Interview</button>
 				</div>
 			</div>
 		`;
@@ -114,10 +114,11 @@ $(document).ready(function () {
 		let salary_grade = $(this).attr('salary_grade');
 		let applicant_id = $(this).attr('applicant_id');
 		let plantilla_no = $(this).attr('plantilla_no');
+		let ddTitle = $(this).attr('dropdown_title');
 		console.log(salary_grade);
 		const interviewLink = salary_grade <= 14 ?
-			`${baseUrl}Interview/firstForm?salary_grade=${salary_grade}&applicant_id=${applicant_id}&plantilla_no=${plantilla_no}` :
-			`${baseUrl}Interview/secondForm?salary_grade=${salary_grade}&applicant_id=${applicant_id}&plantilla_no=${plantilla_no}`;
+			`${baseUrl}Interview/firstForm?salary_grade=${salary_grade}&applicant_id=${applicant_id}&plantilla_no=${plantilla_no}&ddTitle=${ddTitle}` :
+			`${baseUrl}Interview/secondForm?salary_grade=${salary_grade}&applicant_id=${applicant_id}&plantilla_no=${plantilla_no}&ddTitle=${ddTitle}`;
 
 		location.replace(interviewLink);
 	});

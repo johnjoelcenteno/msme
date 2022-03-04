@@ -1,19 +1,3 @@
-<link rel="stylesheet" href="<?= base_url() ?>assets/custom_css/dashboard.css">
-<style>
-    .submit-button-row {
-        display: flex;
-        justify-content: right;
-    }
-
-    .bg-white-smoke {
-        background-color: #fffbfb !important;
-        border-radius: 10px;
-    }
-
-    strong {
-        font-weight: bolder;
-    }
-</style>
 <div class="spacer-75"></div>
 &nbsp;
 <section>
@@ -30,8 +14,7 @@
             <div class="card">
 
                 <div class="card-header card-header-primary">
-                    <h4 class="card-title">Positions to rate</h4>
-                    <p class="category">Here are the positions for interview</p>
+                    <h4 class="card-title">Comprehensive Evaluation Results</h4>
                 </div>
                 <div class="card-body">
                     <div class="row" id="iteratePositionsToApplyHere">
@@ -43,3 +26,7 @@
             </div>
         </div>
 </section>
+<input type="hidden" id="employeeInfo" value='<?= $employeeTable ?>'>
+<input type="hidden" id="positionsForInterview" value='<?= $positionsForInterview ?>'>
+<input type="hidden" id="applicantsTable" value='<?= $applicantsTable ?>'>
+<script src="<?= base_url() ?>assets/custom_js/comprehensive_evaluation_results.js"></script>

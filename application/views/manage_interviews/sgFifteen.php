@@ -133,6 +133,7 @@
 <input type="hidden" id="applicant_id" value="<?= $applicant_id ?>">
 <input type="hidden" id="plantilla_no" value="<?= $plantilla_no ?>">
 <input type="hidden" id="applicantTable" value='<?= json_encode($applicantTable) ?>'>
+<input type="hidden" id="ddTitle" value="<?= $this->input->get('ddTitle') ?>">
 <script>
     $(document).ready(function() {
         const removePlantillaNumberAndUpdatePositionAppliedFor = () => {
@@ -186,17 +187,22 @@
             let Logical_presentation_of_ideas = parseInt($('#Logical_presentation_of_ideas').val());
             let remarks = $('#remarks').val();
 
-
+            const total_score_a = Emotional_Stability + Openness_to_experience + Agreeableness + Extraversion + Conscientiousness;
+            const total_score_b = On_devising_and_plan_or_any_activity + On_how_to_organize + On_implementing + On_monitoring + Knowledge_of_the_job + Logical_presentation_of_ideas;
             const total = Conscientiousness + Extraversion + Agreeableness + Openness_to_experience + Emotional_Stability + On_devising_and_plan_or_any_activity + On_how_to_organize + On_implementing + On_monitoring + Knowledge_of_the_job + Logical_presentation_of_ideas;
             const answers = JSON.stringify(getFormInputs());
 
             const applicant_id = $('#applicant_id').val();
             const plantilla_item_no = $('#plantilla_no').val();
+            const dd_title = $('#ddTitle').val().replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '');
 
             const postObj = {
+                dd_title,
                 applicant_id,
                 plantilla_item_no,
                 total,
+                total_score_a,
+                total_score_b,
                 answers
             };
             const sendPost = () => {
@@ -210,7 +216,7 @@
                     });
 
                     setTimeout(() => {
-                        location.replace(`${baseUrl}Dashboard`);
+                        location.replace(`${baseUrl}InterviewRatingManagement`);
                     }, 2000);
                 });
             }
