@@ -3,8 +3,9 @@
 <section>
     <nav aria-label="breadcrumb" role="navigation">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Rate Applicant</li>
+            <li class="breadcrumb-item"><a href="<?= base_url() ?>Dashboard">Home</a></li>
+            <li class="breadcrumb-item"><a href="<?= base_url() ?>ComprehensiveEvaluationResults">Comprehensive Evaluation</a></li>
+            <li class="breadcrumb-item"><a href="javascript:;">Add scores</a></li>
         </ol>
     </nav>
 
@@ -38,7 +39,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="">Education</label>
-                                            <input type="text" id="education" min="0" max="12" placeholder="(0 - 12 pts) Enter points here" class="form-control">
+                                            <input type="number" id="education" min="0" max="12" placeholder="(0 - 12 pts) Enter points here" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -47,25 +48,25 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="">Performance</label>
-                                            <input type="text" id="performance" min="0" max="30" placeholder="(0 - 30 pts) Enter points here" class="form-control">
+                                            <input type="number" id="performance" min="0" max="30" placeholder="(0 - 30 pts) Enter points here" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="">Training</label>
-                                            <input type="text" id="training" min="0" max="8" placeholder="(0 - 8 pts) Enter points here" class="form-control">
+                                            <input type="number" id="training" min="0" max="8" placeholder="(0 - 8 pts) Enter points here" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="">Experience</label>
-                                            <input type="text" id="experience" min="0" max="15" placeholder="(0 - 15 pts) Enter points here" class="form-control">
+                                            <input type="number" id="experience" min="0" max="15" placeholder="(0 - 15 pts) Enter points here" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="">Written Skill/ Exam</label>
-                                            <input type="text" id="writtenSkill" min="0" max="15" placeholder="(0 - 15 pts) Enter points here" class="form-control">
+                                            <input type="number" id="writtenSkill" min="0" max="15" placeholder="(0 - 15 pts) Enter points here" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -74,13 +75,13 @@
                                     <div class="col-md-4" style="display:none">
                                         <div class="form-group">
                                             <label for="">Total</label>
-                                            <input disabled type="text" id="total" placeholder="Enter points here" class="form-control">
+                                            <input disabled type="number" id="total" placeholder="Enter points here" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Awards and Outstanding Achievement</label>
-                                            <input type="text" id="awards" min="0" max="5" placeholder="(0 - 5 pts) Enter points here" class="form-control">
+                                            <input type="number" id="awards" min="0" max="5" placeholder="(0 - 5 pts) Enter points here" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -108,9 +109,38 @@
 <input type="hidden" id="employeeInfo" value='<?= $employeeTable ?>'>
 <input type="hidden" id="positionsForInterview" value='<?= $positionsForInterview ?>'>
 <input type="hidden" id="interviewTable" value='<?= $applicantsTable ?>'>
+<input type="hidden" id="interviewTableSpecificApplicant" value='<?= $interviewTable ?>'>
+<input type="hidden" id="isProvincialSecretariat" value='<?= $isProvincialSecretariat ?>'>
 
 <script>
     $(document).ready(function() {
+
+        const interviewTableSpecificApplicant = JSON.parse($('#interviewTableSpecificApplicant').val());
+        const provincialSecretariatCompleted = interviewTableSpecificApplicant?.provincial_secretariat_completed;
+        const isProvincialSecretariat = $('#isProvincialSecretariat').val();
+
+        const initializeFormInputs = () => {
+            if (interviewTableSpecificApplicant == null) return;
+
+            $('#education').val(interviewTableSpecificApplicant.education);
+            $('#performance').val(interviewTableSpecificApplicant.performance);
+            $('#training').val(interviewTableSpecificApplicant.training);
+            $('#experience').val(interviewTableSpecificApplicant.experience);
+            $('#writtenSkill').val(interviewTableSpecificApplicant.written_skill);
+            $('#awards').val(interviewTableSpecificApplicant.awards);
+            $('#comprehensive_remarks').val(interviewTableSpecificApplicant.comprehensive_remarks);
+        }
+        initializeFormInputs();
+
+
+        function determineIfProvincialSecretariat() {
+            if (provincialSecretariatCompleted == "1" && isProvincialSecretariat == "1") {
+                $('input').attr('disabled', true);
+                $('button[type="submit"]').hide();
+            }
+        }
+
+        determineIfProvincialSecretariat();
 
         const interviewTable = JSON.parse($('#interviewTable').val())[0];
         const totalInterviewScore = interviewTable.total;
@@ -145,6 +175,7 @@
 
                 setTimeout(() => {
                     location.replace(`${baseUrl}ComprehensiveEvaluationResults/`);
+                    determineIfProvincialSecretariat();
                 }, 1500);
             });
         }
@@ -153,7 +184,7 @@
             e.preventDefault();
 
             Swal.fire({
-                title: 'Total score: ' + totalFormScore(),
+                title: 'Are you sure?',
                 icon: 'info',
                 showCancelButton: true,
                 confirmButtonColor: '#4CAF50',

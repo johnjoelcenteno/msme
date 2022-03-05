@@ -88,12 +88,12 @@ $userRole = $this->Main_model->get_where("employee", "credentials_id", $_SESSION
 								<i class="material-icons">playlist_add</i> Summary Interview Rating Sheet
 							</a>
 
-							<a title="Official Receipt" class="dropdown-item" href="/OR">
-								<i class="material-icons">receipt</i> Individual Interview Rating Sheet
+							<a title="Comprehensive Evaluation Results" class="dropdown-item" href="<?= base_url() ?>ComprehensiveEvaluationResults/comprehensiveEvaluationResults">
+								<i class="material-icons">playlist_add_check</i> Comprehensive Evaluation Results
 							</a>
 
-							<a title="Cash Disbursement Voucher" class="dropdown-item" href="/CV">
-								<i class="material-icons">playlist_add_check</i> Comprehensive Evaluation Results
+							<a title="Official Receipt" class="dropdown-item" href="/OR">
+								<i class="material-icons">receipt</i> Individual Interview Rating Sheet
 							</a>
 
 						</div>

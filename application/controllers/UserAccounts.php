@@ -27,7 +27,6 @@ class UserAccounts extends CI_Controller
 		$basis['viceChairman'] = "Vice-Chair";
 		$basis['member'] = "Member";
 		$basis['endUser'] = "End User";
-		$basis['endUser'] = "End User";
 		$basis['k4Representative1stLevel'] = "K4 Rep 1st";
 		$basis['k4Representative2ndLevel'] = "K4 Rep 2nd";
 		$basis['gadRepresentative1stLevel'] = "GAD Rep 1st";

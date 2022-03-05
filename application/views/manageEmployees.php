@@ -53,7 +53,11 @@
 				},
 				{
 					field: 'office_name',
-					title: 'Office Name',
+					title: 'Division/CENRO',
+				},
+				{
+					field: 'province',
+					title: 'Province',
 				},
 				{
 					field: 'user_role',

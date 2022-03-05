@@ -115,7 +115,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label for="">Remarks</label>
-                                        <textarea required name="" id="remarks" placeholder="Enter your Remarks here" cols="30" rows="5" class="form-control"></textarea>
+                                        <textarea name="" id="remarks" placeholder="Enter your Remarks here" cols="30" rows="5" class="form-control"></textarea>
                                     </div>
                                 </div>
                                 <div class="row mt-5">

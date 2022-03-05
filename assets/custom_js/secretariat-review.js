@@ -1,5 +1,6 @@
 $(document).ready(function () {
     $('#grid').kendoGrid({
+        toolbar: ['search'],
         sortable: true,
         pageable: true,
         editable: "popup",
@@ -14,21 +15,23 @@ $(document).ready(function () {
         },
         {
             field: 'employee_fullname',
-            title: 'Employee name'
+            title: 'Employee name',
+            width: '20%',
         },
         {
             field: 'applicant_fullname',
-            title: 'Applicant Name'
+            title: 'Applicant Name',
+            width: '18%',
         },
         {
             field: 'title_location',
-            title: 'Place of vacancy'
+            title: 'Position Details'
         },
         ],
         dataBound: (e) => setTimeout(() => $('#grid').data("kendoGrid").dataSource.read(e), 5000),
 
         dataSource: {
-            pageSize: 5,
+            pageSize: 6,
             group: [{ field: "title_location" }, { field: "applicant_fullname" }],
             transport: {
                 read: {

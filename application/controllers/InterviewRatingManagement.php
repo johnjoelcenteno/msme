@@ -19,11 +19,48 @@ class InterviewRatingManagement extends CI_Controller
         }
     }
 
+    public function determineIfFirstlevelOrSecondLevel()
+    {
+        $employeeId = $this->Credentials_model->getUserId();
+        $employeeUserRole = $this->Main_model->get_where('employee', "employee_id", $employeeId)->row()->user_role;
+
+        $userRoles['k4Representative1stLevel'] = 1;
+        $userRoles['gadRepresentative1stLevel'] = 1;
+        $userRoles['k4Representative2ndLevel'] = 2;
+        $userRoles['gadRepresentaive2ndLevel'] = 2;
+
+
+        $checkListArray = ["k4Representative1stLevel", "gadRepresentative1stLevel", "k4Representative2ndLevel", "gadRepresentaive2ndLevel"];
+
+        return in_array($employeeUserRole, $checkListArray) ? $userRoles[$employeeUserRole] : 0;
+    }
+
+    public function determinePositionsByLogedInUser()
+    {
+        $firstOrSecondLevel = $this->determineIfFirstlevelOrSecondLevel();
+
+        switch ($firstOrSecondLevel) {
+            case 1:
+                $where['Salary_job_pay_scale <='] = 14; // first level
+                break;
+
+            case 2:
+                $where['Salary_job_pay_scale >'] = 14; // second level
+                break;
+        }
+
+        $where['is_for_interview'] = 1;
+        $query = $this->Main_model->multiple_where("position", $where);
+        // $this->Main_model->showNormalArray($query->result());
+        // die;
+        return $query;
+    }
+
     public function index()
     {
         $this->determineIfSecretariat();
         $this->Main_model->alertPromt('You already rated this applicant', 'canNotReview');
-        $data['positionsForInterview'] = json_encode($this->Main_model->get_where("position", "is_for_interview", 1) ? $this->Main_model->get_where("position", "is_for_interview", 1)->result_array() : "");
+        $data['positionsForInterview'] = json_encode($this->determinePositionsByLogedInUser()->result_array());
 
         $data['employeeTable'] = json_encode($this->Main_model->get_where("employee", "credentials_id", $_SESSION['credentials_id']) ? $this->Main_model->get_where("employee", "credentials_id", $_SESSION['credentials_id'])->result_array() : "");
         $data['applicantsTable'] = json_encode($this->Main_model->get("applicant", "applicant_id") ? $this->Main_model->get("applicant", "applicant_id")->result_array() : "");
@@ -48,8 +85,32 @@ class InterviewRatingManagement extends CI_Controller
         $this->view_manipulation->renderViewWithLayout();
     }
 
+    public function determineIfProvincialSecretariat()
+    {
+        $employeeTable = $this->Main_model->get_where("employee", "credentials_id", $_SESSION['credentials_id'])->row();
+        if ($employeeTable->user_role == 'secretariat' && $employeeTable->office_name == 'Management Services Division') {
+            return 1;
+        } else {
+            return 0; // regional secretariat determined
+        }
+    }
+
     public function getAllInterviewsForSecretariat()
     {
+
+        $isRegionalSecretariat = $this->determineIfProvincialSecretariat();
+
+        if ($isRegionalSecretariat == 0) {
+            $returnData = array();
+            $ratedApplicants = $this->Main_model->get("rated_applicants", "employee_fullname");
+            foreach ($ratedApplicants->result_array() as $row) {
+                $row['title_location'] = $row['position_title'] . " : " . $row['plantilla_item_no'] . " : " . $row['employee_province'] . " - " . $row['employee_office_name'];
+                array_push($returnData, $row);
+            }
+            echo json_encode($returnData);
+            return;
+        }
+
         $employeeId = $this->Credentials_model->getUserId();
         $logedInProvince = $this->Main_model->get_where("employee", "employee_id", $employeeId)->row()->province;
 

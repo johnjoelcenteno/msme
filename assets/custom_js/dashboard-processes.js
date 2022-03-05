@@ -33,7 +33,8 @@ $(document).ready(function () {
 					applicants: []
 				};
 
-				dashboardDropDowns.push(objForDashboardDd);
+				let isAlreadyPresent = dashboardDropDowns.findIndex(x => x.title == objForDashboardDd.title);
+				if (isAlreadyPresent == -1) dashboardDropDowns.push(objForDashboardDd);
 			}
 		});
 	});
@@ -54,14 +55,25 @@ $(document).ready(function () {
 	//console.log(dashboardDropDowns); //summary of titles for the thumbnail of dashboard
 	//console.log(summaryOfAllApplicantsThatCanBeRated);
 
+
+	let listOfAppendedApplicantsForThePosition = []; // applicantsForDdElement -> all applicants
 	// MAP ALL OF THE APPLICANTS TO CORRESPONDING DASHBOARDdD
 	dashboardDropDowns.forEach(ddElements => {
 		let ddElementsPlantillaNumber = ddElements.plantillaNumber;
 
-		let applicantsForDdElement = summaryOfAllApplicantsThatCanBeRated.filter(applicant => {
+		let applicantsForDdElement = summaryOfAllApplicantsThatCanBeRated.filter(applicant => { // list of applicant loop
+
+			const applicantId = applicant.applicant_id;
 			let applicantPositionsAppliedForArray = applicant.position_applied_for.split(',');
-			if (applicantPositionsAppliedForArray.includes(ddElementsPlantillaNumber)) return applicant;
+
+			if (applicantPositionsAppliedForArray.includes(ddElementsPlantillaNumber) && !listOfAppendedApplicantsForThePosition.includes(applicantId)) { // ikakabilang ba kita o hindi
+				listOfAppendedApplicantsForThePosition.push(applicantId);
+				return applicant;
+			};
+
 		});
+		listOfAppendedApplicantsForThePosition = [];
+
 
 		ddElements.applicants = applicantsForDdElement;
 	});

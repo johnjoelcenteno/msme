@@ -20,8 +20,7 @@
     <nav aria-label="breadcrumb" role="navigation">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
-            <!-- <li class="breadcrumb-item"><a href="javascript:;">Library</a></li> -->
-            <li class="breadcrumb-item active" aria-current="page">Interview Rating Management</li>
+            <li class="breadcrumb-item active" aria-current="page">Summary Interview Rating Sheet</li>
         </ol>
     </nav>
 
@@ -30,7 +29,7 @@
             <div class="card">
 
                 <div class="card-header card-header-primary">
-                    <h4 class="card-title">Interview Rating Management</h4>
+                    <h4 class="card-title">Summary Interview Rating Sheet</h4>
                     <!-- <p class="category">Here are the positions for interview</p> -->
                 </div>
                 <div class="card-body">
@@ -40,5 +39,4 @@
             </div>
         </div>
 </section>
-
-<script src="<?= base_url() ?>assets/custom_js/secretariat-review.js"></script>
+<script src="<?= base_url() ?>assets/custom_js/managePositionsSummaryInterviewRatingSheet.js"></script>

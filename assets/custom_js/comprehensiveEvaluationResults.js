@@ -1,48 +1,33 @@
 $(document).ready(function () {
-    const processResp = (resp) => {
-        resp = JSON.parse(resp);
-        console.log(resp);
-        let applicantListContainer = [];
-        // find unique applicants 
-        let uniqueApplicantElement = resp.filter(respElement => {
-            let applicantIdRespElem = respElement.applicant_id;
-            let plantillaItemNumberRespElem = respElement.plantilla_item_no;
-
-            const pushedFilterObj = {
-                applicant_id: applicantIdRespElem,
-                plantilla_number: plantillaItemNumberRespElem
-            };
-
-            if (applicantListContainer.findIndex(x => x.applicant_id == applicantIdRespElem && x.plantilla_number == plantillaItemNumberRespElem) == -1) {
-                applicantListContainer.push(pushedFilterObj);
-                return respElement;
-            }
-        }); // filter loop completed
-
-        return uniqueApplicantElement;
-    }
-
     $('#grid').kendoGrid({
-        toolbar: ['search'],
+        toolbar: ["search"],
         sortable: true,
         pageable: true,
-        editable: "popup",
         groupable: true,
+        editable: "popup",
         edit: function (e) {
             e.container.find(".k-edit-label:first").hide();
             e.container.find(".k-edit-field:first").hide();
         },
         columns: [{
-            field: "employee_id",
+            field: "position_id",
             hidden: true
         },
         {
-            field: 'applicant_fullname',
-            title: 'Applicant Name'
+            field: 'position_title',
+            title: 'Position Title'
         },
         {
-            field: 'title_location',
-            title: 'Position Details'
+            field: 'plantilla_item_no',
+            title: 'Plantilla Item Number'
+        },
+        {
+            field: 'office_name',
+            title: 'Office Assignment'
+        },
+        {
+            field: 'province',
+            title: 'Province Name'
         },
         {
             command: [{
@@ -50,19 +35,18 @@ $(document).ready(function () {
                 text: {
                     edit: " "
                 },
-                template: "<a class='customEdit btn btn-success btn-round' title='Rate'><i class='material-icons'>edit</i></a>"
+                template: "<a class='customEdit btn btn-info btn-round' title='Edit'><i class='material-icons'>visibility</i></a>"
             },
             ],
-            width: '10%',
         },
         ],
 
         dataSource: {
             pageSize: 5,
-            group: [{ field: "title_location" }],
+            group: [{ field: 'position_title' }, { field: 'office_name' }],
             transport: {
                 read: {
-                    url: `${baseUrl}InterviewRatingManagement/getAllInterviewsForSecretariat`,
+                    url: `${baseUrl}Reports/getAllPositionsThatIsVacantAndForInterview`,
                     contentType: "json",
                     type: "GET"
                 },
@@ -72,23 +56,29 @@ $(document).ready(function () {
             },
 
             schema: {
-                data: (resp) => processResp(resp),
+                data: (resp) => JSON.parse(resp),
                 total: (resp) => JSON.parse(resp).length,
                 model: {
-                    id: "rated_applicant_id",
-                    fields: {
-                        rated_applicant_id: {
+                    id: "position_id",
+                    position_id: {
+                        employee_id: {
                             editable: false,
                             nullable: true
                         },
-                        applicant_fullname: {
+                        position_title: {
+                            type: "string",
+                            validation: {
+                                required: true
+                            }
+                        },
+                        plantilla_item_no: {
                             type: "string",
                             validation: {
                                 required: true,
                                 min: 1
                             }
                         },
-                        title_location: {
+                        office_name: {
                             type: "string",
                             validation: {
                                 required: true,
@@ -121,16 +111,19 @@ $(document).ready(function () {
         }
     });
 
+    $("#addEmployee").click(function () {
+        var grid = $("#grid").data("kendoGrid");
+        grid.addRow();
+    });
+
     var grid = $("#grid").data("kendoGrid");
 
     $("#grid").on("click", ".customEdit", function () {
         var row = $(this).closest("tr");
         var data = grid.dataItem(row);
         const baseUrl = $('#baseUrl').val();
-        let plantilla_no = data.plantilla_item_no;
-        let applicant_id = data.applicant_id;
 
-        location.replace(`${baseUrl}ComprehensiveEvaluationResults/addOtherScores?applicant_id=${applicant_id}&plantilla_no=${plantilla_no}`);
+        location.replace(baseUrl + `ComprehensiveEvaluationResults/viewComprehensiveEvaluationResultsOfPosition/${data.id}`);
     })
 
 
