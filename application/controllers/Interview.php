@@ -71,9 +71,10 @@ class Interview extends CI_Controller
         $insert['total'] = $this->input->post('total');
         $insert['answers'] = $this->input->post('answers');
         $insert['date_interviewed'] = date("Y-m-d");
-        $insert['dd_title'] = $this->input->post("dd_title");
+        // $insert['dd_title'] = $this->input->post("dd_title");
         $this->Main_model->_insert("interview", $insert);
-
+        // $this->Main_model->showNormalArray($insert);        
+        
         $employeeTable = $this->Main_model->get_where('employee', 'employee_id', $employeeId)->row();
         $applicantTable = $this->Main_model->get_where('applicant', 'applicant_id', $this->input->post('applicant_id'))->row();
         $positionTitle = $this->Main_model->get_where('position', 'plantilla_item_no', $this->input->post('plantilla_item_no'))->row()->position_title;

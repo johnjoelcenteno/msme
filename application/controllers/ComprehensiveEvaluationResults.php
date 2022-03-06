@@ -82,10 +82,12 @@ class ComprehensiveEvaluationResults extends CI_Controller
 
         $interviewWhere['applicant_id'] = $applicant_id;
         $interviewWhere['plantilla_item_no'] = $plantillaNo;
-        $interviewWhere['provincial_secretariat_id'] = $employeeId;
+        if($this->determineIfProvincialSecretariat() == 1) $interviewWhere['provincial_secretariat_id'] = $employeeId;
         $data['interviewTable'] = json_encode($this->Main_model->multiple_where("interview", $interviewWhere) ? $this->Main_model->multiple_where("interview", $interviewWhere)->result_array() : "");
         $data['positionsForInterview'] = json_encode($this->Main_model->get_where("position", "is_for_interview", 1) ? $this->Main_model->get_where("position", "is_for_interview", 1)->result_array() : "");
-
+        // $this->Main_model->showNormalArray($interviewWhere);
+        // $this->Main_model->showNormalArray($data);
+        // die;
         $data['employeeTable'] = json_encode($this->Main_model->get_where("employee", "credentials_id", $_SESSION['credentials_id']) ? $this->Main_model->get_where("employee", "credentials_id", $_SESSION['credentials_id'])->result_array() : "");
         $data['applicantsTable'] = json_encode($this->Main_model->get("applicant", "applicant_id") ? $this->Main_model->get("interview", "interview_id")->result_array() : "");
 
@@ -107,7 +109,7 @@ class ComprehensiveEvaluationResults extends CI_Controller
 
     public function insertAddedScores()
     {
-        $interview_id = $this->input->post('interview_id');
+        echo $interview_id = $this->input->post('interview_id');
         $employeeId = $this->Credentials_model->getUserId();
 
         $update['education'] = $this->input->post('education');
@@ -117,7 +119,7 @@ class ComprehensiveEvaluationResults extends CI_Controller
         $update['written_skill'] = $this->input->post('written_skill');
         $update['total_added'] = $this->input->post('total');
         $update['awards'] = $this->input->post('awards');
-        $update['comprehensive_remarks'] = $this->input->post('comprehensive_remarks');
+        $update['comprehensive_remarks'] = $this->input->post('comprehensive_remarks') == "" ? "Approved" : $this->input->post('comprehensive_remarks');
         $update['is_completed'] = 1;
 
         if ($this->determineIfProvincialSecretariat() == 1) {
@@ -125,5 +127,6 @@ class ComprehensiveEvaluationResults extends CI_Controller
             $update['provincial_secretariat_id'] = $employeeId;
         }
         $this->Main_model->_update("interview", "interview_id", $interview_id, $update);
+        $this->Main_model->showNormalArray($update);
     }
 }

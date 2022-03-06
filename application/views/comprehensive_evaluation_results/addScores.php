@@ -118,7 +118,7 @@
         const interviewTableSpecificApplicant = JSON.parse($('#interviewTableSpecificApplicant').val());
         const provincialSecretariatCompleted = interviewTableSpecificApplicant?.provincial_secretariat_completed;
         const isProvincialSecretariat = $('#isProvincialSecretariat').val();
-
+        console.log(interviewTableSpecificApplicant);
         const initializeFormInputs = () => {
             if (interviewTableSpecificApplicant == null) return;
 
@@ -173,10 +173,10 @@
                     timer: 1500
                 });
 
-                setTimeout(() => {
-                    location.replace(`${baseUrl}ComprehensiveEvaluationResults/`);
-                    determineIfProvincialSecretariat();
-                }, 1500);
+                // setTimeout(() => {
+                //     location.replace(`${baseUrl}ComprehensiveEvaluationResults/`);
+                //     determineIfProvincialSecretariat();
+                // }, 1500);
             });
         }
 

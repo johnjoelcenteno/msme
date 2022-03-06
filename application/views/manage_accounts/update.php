@@ -120,14 +120,14 @@
 									</li>
 									<li class="mb-5">
 										<input value="k4Representative2ndLevel" type="radio" name="radio-boxes-user-role" class="user-role-rb">
-										<h3 class="h3-radio-boxes"><strong>K4 Representaive</strong> (2nd Level)</h3>
+										<h3 class="h3-radio-boxes"><strong>K4 Representative</strong> (2nd Level)</h3>
 									</li>
 									<li class="mb-5">
 										<input value="gadRepresentative1stLevel" type="radio" name="radio-boxes-user-role" class="user-role-rb">
 										<h3 class="h3-radio-boxes"><strong>GAD Representative</strong> (1st Level)</h3>
 									</li>
 									<li class="mb-5">
-										<input value="gadRepresentaive2ndLevel" type="radio" name="radio-boxes-user-role" class="user-role-rb">
+										<input value="gadRepresentative2ndLevel" type="radio" name="radio-boxes-user-role" class="user-role-rb">
 										<h3 class="h3-radio-boxes"><strong>GAD Representative</strong> (2nd Level)</h3>
 									</li>
 									<li class="mb-5">

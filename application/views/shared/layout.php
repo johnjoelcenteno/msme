@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8" />
-	<title>Department of Agriculture</title>
+	<title>DENR HRMPSB</title>
 
 	<link rel="stylesheet" href="<?= base_url() ?>assets/kendo/styles/kendo.common-material.min.css" />
 	<link rel="stylesheet" href="<?= base_url() ?>assets/kendo/styles/kendo.custom.min.css" />

@@ -27,10 +27,10 @@ class InterviewRatingManagement extends CI_Controller
         $userRoles['k4Representative1stLevel'] = 1;
         $userRoles['gadRepresentative1stLevel'] = 1;
         $userRoles['k4Representative2ndLevel'] = 2;
-        $userRoles['gadRepresentaive2ndLevel'] = 2;
+        $userRoles['gadRepresentative2ndLevel'] = 2;
 
 
-        $checkListArray = ["k4Representative1stLevel", "gadRepresentative1stLevel", "k4Representative2ndLevel", "gadRepresentaive2ndLevel"];
+        $checkListArray = ["k4Representative1stLevel", "gadRepresentative1stLevel", "k4Representative2ndLevel", "gadRepresentative2ndLevel"];
 
         return in_array($employeeUserRole, $checkListArray) ? $userRoles[$employeeUserRole] : 0;
     }
@@ -41,11 +41,11 @@ class InterviewRatingManagement extends CI_Controller
 
         switch ($firstOrSecondLevel) {
             case 1:
-                $where['Salary_job_pay_scale <='] = 14; // first level
+                $where['Salary_job_pay_scale <='] = 9; // first level
                 break;
 
             case 2:
-                $where['Salary_job_pay_scale >'] = 14; // second level
+                $where['Salary_job_pay_scale >'] = 9; // second level
                 break;
         }
 
@@ -60,6 +60,7 @@ class InterviewRatingManagement extends CI_Controller
     {
         $this->determineIfSecretariat();
         $this->Main_model->alertPromt('You already rated this applicant', 'canNotReview');
+    
         $data['positionsForInterview'] = json_encode($this->determinePositionsByLogedInUser()->result_array());
 
         $data['employeeTable'] = json_encode($this->Main_model->get_where("employee", "credentials_id", $_SESSION['credentials_id']) ? $this->Main_model->get_where("employee", "credentials_id", $_SESSION['credentials_id'])->result_array() : "");

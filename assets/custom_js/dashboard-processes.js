@@ -3,6 +3,7 @@ $(document).ready(function () {
 	const positionsForInterview = $('#positionsForInterview').val();
 	const applicantsTable = $('#applicantsTable').val();
 
+	console.log(positionsForInterview);
 	const vacantPositionToRateArray = JSON.parse(employeeInfo.vacant_position_to_rate);
 	const openPositionsForInterviewArray = JSON.parse(positionsForInterview);
 
