@@ -173,10 +173,10 @@
                     timer: 1500
                 });
 
-                // setTimeout(() => {
-                //     location.replace(`${baseUrl}ComprehensiveEvaluationResults/`);
-                //     determineIfProvincialSecretariat();
-                // }, 1500);
+                setTimeout(() => {
+                    location.replace(`${baseUrl}ComprehensiveEvaluationResults/`);
+                    determineIfProvincialSecretariat();
+                }, 1500);
             });
         }
 

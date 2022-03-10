@@ -82,7 +82,7 @@ class ComprehensiveEvaluationResults extends CI_Controller
 
         $interviewWhere['applicant_id'] = $applicant_id;
         $interviewWhere['plantilla_item_no'] = $plantillaNo;
-        if($this->determineIfProvincialSecretariat() == 1) $interviewWhere['provincial_secretariat_id'] = $employeeId;
+        if ($this->determineIfProvincialSecretariat() == 1) $interviewWhere['provincial_secretariat_id'] = $employeeId;
         $data['interviewTable'] = json_encode($this->Main_model->multiple_where("interview", $interviewWhere) ? $this->Main_model->multiple_where("interview", $interviewWhere)->result_array() : "");
         $data['positionsForInterview'] = json_encode($this->Main_model->get_where("position", "is_for_interview", 1) ? $this->Main_model->get_where("position", "is_for_interview", 1)->result_array() : "");
         // $this->Main_model->showNormalArray($interviewWhere);
@@ -109,7 +109,7 @@ class ComprehensiveEvaluationResults extends CI_Controller
 
     public function insertAddedScores()
     {
-        echo $interview_id = $this->input->post('interview_id');
+        $interview_id = $this->input->post('interview_id');
         $employeeId = $this->Credentials_model->getUserId();
 
         $update['education'] = $this->input->post('education');
