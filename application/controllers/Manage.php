@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Accounts extends CI_Controller
+class Manage extends CI_Controller
 {
     function __construct()
     {
@@ -14,6 +14,18 @@ class Accounts extends CI_Controller
         $data['guid'] = $this->Main_model->createGuid();
 
         $params['viewName'] = 'accounts';
+        $params['pageTitle'] = '';
+        $params['renderedData'] = $data;
+
+        $this->load->library('view_manipulation', $params);
+        $this->view_manipulation->renderViewWithLayout();
+    }
+
+    public function addRecord()
+    {
+        $data['guid'] = $this->Main_model->createGuid();
+
+        $params['viewName'] = 'createMsme';
         $params['pageTitle'] = '';
         $params['renderedData'] = $data;
 

@@ -51,27 +51,29 @@
 <!-- BEGIN LOGIN SECTION -->
 <section class="land-background">
 	<div align="center" class="bg-light">
-		<img src="<?= base_url() ?>assets/img/logo.png" class="img-fluid" alt="">
-		<center>
-			<h1>Department of Environment and Natural Resources</h1>
-		</center>
-		<form action="">
-			<div class="credentials">
-				<div class="form-group">
-					<!-- <label for="">Username</label> -->
-					<input type="text" id="username" class="form-control" placeholder="Username" autocomplete="off">
-				</div>
+		<h1 align="center" style="font-weight: bold; margin-top: 5%" class="text-uppercase">Department of Trade and Industries</h1>
+		<div class="col-md-6">
+			<img src="<?= base_url() ?>assets/img/logo.png" width="300" height="250" alt="">
+		</div>
+		<div class="col-md-6" style="top: 10%;">
+			<form action="">
+				<div class="credentials">
+					<div class="form-group">
+						<!-- <label for="">Username</label> -->
+						<input type="text" id="username" class="form-control" placeholder="Username" autocomplete="off">
+					</div>
 
-				<div class="form-group">
-					<!-- <label for="">Password</label> -->
-					<input type="password" id="password" class="form-control" placeholder="Password" autocomplete="off">
-				</div>
+					<div class="form-group">
+						<!-- <label for="">Password</label> -->
+						<input type="password" id="password" class="form-control" placeholder="Password" autocomplete="off">
+					</div>
 
-				<div class="login-div">
-					<button type="submit" class="btn btn-primary col-md-12">Login</button>
+					<div class="login-div">
+						<button type="submit" class="btn btn-primary col-md-12">Login</button>
+					</div>
 				</div>
-			</div>
-		</form>
+			</form>
+		</div>
 	</div>
 </section>
 <!-- END LOGIN SECTION -->

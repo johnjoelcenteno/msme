@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8" />
-	<title>DENR HRMPSB</title>
+	<title>DTI MSME</title>
 
 	<link rel="stylesheet" href="<?= base_url() ?>assets/kendo/styles/kendo.common-material.min.css" />
 	<link rel="stylesheet" href="<?= base_url() ?>assets/kendo/styles/kendo.custom.min.css" />
@@ -74,7 +74,7 @@
 						&copy;
 						<script>
 							document.write(new Date().getFullYear())
-						</script>, made with <i class="material-icons">favorite</i> by
+						</script>, made with <i class="material-icons">favorite</i> by Cassandra wardel Da Greyt
 						<a href="" target="blank"></a>
 					</div>
 				</div>
