@@ -25,6 +25,19 @@ body {
     border-color: #81c784 !important;
 }
 
+.k-header{
+    background-color: #2190EE;
+}
+
+.k-button{
+    background-color: #182186 !important;
+    border-color: #182186 !important;
+}
+
+.btn-success{
+    background-color: #182186 !important;
+}
+
 .k-button,
 .k-header {
     font-weight: 500;
@@ -84,7 +97,7 @@ button#noButton {
 .card-header.card-header-green {
     background: linear-gradient( 
 60deg
- ,#4caf50,#4caf50);
+ ,rgb(24,33,134),rgb(31, 47, 218));
 }
 
 .btn.btn-primary{
@@ -96,12 +109,14 @@ button#noButton {
     font-weight: bold;
 }
 
-.card .card-header-primary{
-    background: linear-gradient(
-        60deg
-        ,#4caf50,#4caf50) !important;
-
-        box-shadow: 0 5px 20px 0 rgb(0 0 0 / 20%), 0 13px 24px -11px #8191a1;
+.card .card-header-primary {
+    background: linear-gradient( 60deg ,#182186,#2196f3) !important;
+    box-shadow: 0 5px 20px 0 rgb(0 0 0 / 20%), 0 13px 24px -11px #8191a1;
+}
+.navbar.bg-success {
+    color: #fff;
+    background-color: #182186!important;
+    box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 12px -5px rgb(106 107 178 / 46%);
 }
 
 

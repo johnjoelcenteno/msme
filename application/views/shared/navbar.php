@@ -9,7 +9,7 @@ $fullName = "ADMIN TEST ACCOUNT";
 		<div class="navbar-translate pt-0">
 			<a class="navbar-brand" href="<?= base_url() ?>Dashboard">
 				<!-- <img alt="CAEMC logo" src="<?= base_url() ?>assets/img/logo.png" style="height: 45px; width: 45px;" class="rounded-circle"> -->
-				<span class="text-monospace font-weight-bold"><b>DTI</b> MSME</span>
+				<span class="text-monospace font-weight-bold"><b>Department of Trade and Industry</b> MSME</span>
 			</a>
 			<button type="button" class="navbar-toggler" data-toggle="collapse" aria-expanded="False" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
