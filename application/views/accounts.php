@@ -7,7 +7,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header card-header-primary">
-                    <h4 class="card-title">Manage MSME</h4>
+                    <h4 class="card-title">MSME Profile Form</h4>
 
                 </div>
                 <div class="card-body">

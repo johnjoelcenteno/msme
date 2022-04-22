@@ -51,7 +51,7 @@
 <!-- BEGIN LOGIN SECTION -->
 <section class="land-background">
 	<div align="center" class="bg-light">
-		<h1 align="center" style="font-weight: bold; margin-top: 5%" class="text-uppercase">Department of Trade and Industries</h1>
+		<h1 align="center" style="font-weight: bold; margin-top: 5%" class="text-uppercase">Department of Trade and Industry</h1>
 		<div class="col-md-6">
 			<img src="<?= base_url() ?>assets/img/logo.png" width="300" height="250" alt="">
 		</div>

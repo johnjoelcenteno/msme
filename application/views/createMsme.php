@@ -24,17 +24,27 @@
                             <h6>Business Owner/ Contact Person</h6>
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <label for="">Last Name</label>
                                         <input type="text" placeholder="Enter Last Name here" class="form-control">
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <label for="">First Name</label>
                                         <input type="text" placeholder="Enter First Name here" class="form-control">
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <label for="">Middle Name</label>
                                         <input type="text" placeholder="Enter Middle Name here" class="form-control">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label style="margin-bottom: -15px;">MSME/Owner Gender</label>
+                                            <select class="form-control">
+                                                <option value="">Select Gender</option>
+                                                <option value="">Male</option>
+                                                <option value="">Female</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                                 <br />
@@ -58,20 +68,12 @@
                                 <br>
                                 <div class="form-group">
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <label for="">Select Category</label>
                                             <select class="form-control">
                                                 <option>Select Category</option>
                                                 <option>Existing</option>
                                                 <option>Other Client</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="">Mayor's Permit Registration</label>
-                                            <select class="form-control">
-                                                <option>Select mayor's permit</option>
-                                                <option>Registered</option>
-                                                <option>Not Registered</option>
                                             </select>
                                         </div>
                                     </div>
@@ -82,18 +84,26 @@
                                 <div class="row">
                                     <div class="col-md-2">
                                         <div class="form-group">
-                                            <label for="">BNR</label><br>
+                                            <label for="">Business Name Registration</label><br>
                                             <input type="radio" name="bnrRadio" />
                                             <label for="">Yes</label><br>
                                             <input type="radio" name="bnrRadio" />
                                             <label for="">No</label>
                                         </div>
                                     </div>
-                                    <div class="col-md-10">
+                                    <div class="col-md-5">
                                         <div class="form-group">
-                                            <label for="">Mayor's Permit Number</label>
+                                            <label>Mayor's Permit Number</label>
                                             <input type="text" placeholder="Enter Mayor's permit number" class="form-control">
                                         </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <label style="margin-bottom: -15px;">Mayor's Permit Registration</label>
+                                        <select class="form-control">
+                                            <option>Select mayor's permit</option>
+                                            <option>Registered</option>
+                                            <option>Not Registered</option>
+                                        </select>
                                     </div>
                                 </div>
 
@@ -102,7 +112,13 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label for="">Enterprise Development Track</label>
-                                        <input type="text" class="form-control" placeholder="Enter Enterprise Development Track">
+                                        <select name="" id="enterpriseDevelopment" class="form-control">
+                                            <option value="">Select Enterprise Development</option>
+                                            <option value="1">Startine Enterprise</option>
+                                            <option value="2">Growing</option>
+                                            <option value="3">Expanding</option>
+                                            <option value="4">Sustaining</option>
+                                        </select>
                                     </div>
                                 </div>
 
@@ -143,7 +159,7 @@
                                 <br>
 
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Classification by size</label>
                                             <select class="form-control">
@@ -151,25 +167,16 @@
                                                 <option value="">Micro</option>
                                                 <option value="">Small</option>
                                                 <option value="">Medium</option>
+                                                <option value="">Large</option>
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="">MSME/Owner Gender</label>
-                                            <select class="form-control">
-                                                <option value="">Select Gender</option>
-                                                <option value="">Male</option>
-                                                <option value="">Female</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
+
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Profile</label>
                                             <select class="form-control">
                                                 <option value="">Select profile</option>
-                                                <option value="">TOTAL</option>
                                                 <option value="">OSY</option>
                                                 <option value="">PWD</option>
                                                 <option value="">Others</option>
@@ -195,7 +202,7 @@
 
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <button class="btn btn-success" style="float:right">Create</button>
+                                        <button class="btn btn-success" style="float:right">Save</button>
                                     </div>
                                 </div>
                         </form>
