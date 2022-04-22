@@ -31,7 +31,7 @@
                 e.container.find(".k-edit-label:first").hide();
                 e.container.find(".k-edit-field:first").hide();
             },
-            columns: [{
+            columns: [{ 
                     field: "position_id",
                     hidden: true
                 },
