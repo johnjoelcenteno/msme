@@ -101,11 +101,11 @@ button#noButton {
 }
 
 .btn.btn-primary{
-    background-color: #4caf50 !important;
+    background-color: #182186 !important;
 }
 
 .btn.btn-secondary{
-    background-color: gold !important;
+    background-color: rgb(180, 179, 179) !important;
     font-weight: bold;
 }
 
@@ -118,6 +118,7 @@ button#noButton {
     background-color: #182186!important;
     box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 12px -5px rgb(106 107 178 / 46%);
 }
+
 
 
 

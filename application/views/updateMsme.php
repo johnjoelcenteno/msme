@@ -16,7 +16,7 @@
 
                     <div class="card-body">
                         <h5 class="card-title">
-                            Create Record
+                            Update Record
                         </h5>
 
                         <form class="mt-5" action="" method="POST">
@@ -216,8 +216,58 @@
         </div>
     </div>
 </section>
+<input type="hidden" id="msmeTable" value='<?= $msmeTable ?>'>
+<input type="hidden" id="msme_id" value='<?= $msme_id ?>'>
 <script>
-    function transferInputIntoModal() {
+    const msme_id = $('#msme_id').val();
+
+    function init() {
+        const msmeTable = JSON.parse($('#msmeTable').val());
+        const {
+            msme_id,
+            firstname,
+            middlename,
+            lastname,
+            barangay,
+            city,
+            province,
+            category,
+            mayors_permit_registration,
+            bnr,
+            mayors_permit_number,
+            enterprise_development_track,
+            classification_by_sector,
+            industry_sector,
+            classification_size,
+            owner_gender,
+            profile,
+            technical_advisory_services_provided,
+            date_of_services
+        } = msmeTable;
+
+        $('#lastname').val(lastname);
+        $('#firstname').val(firstname);
+        $('#middlename').val(middlename);
+        $('#gender').val(owner_gender);
+        $('#barangay').val(barangay);
+        $('#municipality').val(city);
+        $('#province').val(province);
+        $('#category').val(category);
+        $('#mayorsPermitNumber').val(mayors_permit_number);
+        $('#mayorsPermit').val(mayors_permit_registration);
+        $('#enterpriseDevelopment').val(enterprise_development_track);
+        $('#classification').val(classification_by_sector);
+        $('#industry').val(industry_sector);
+        $('#classificationBySize').val(classification_size);
+        $('#profile').val(profile);
+        $('#technicalAdvisory').val(technical_advisory_services_provided);
+        $('#dateOfServices').val(date_of_services);
+
+        bnr == 1 ? document.querySelector('#yes').checked = true : document.querySelector('#no').checked = true;
+    }
+
+    function getPayload() {
+        const msme_id = $('#msme_id').val();
         const lastname = $('#lastname').val();
         const firstname = $('#firstname').val();
         const middlename = $('#middlename').val();
@@ -238,51 +288,69 @@
         const technicalAdvisory = $('#technicalAdvisory').val();
         const dateOfServices = $('#dateOfServices').val();
 
-        document.querySelector('#reviewyes').checked = false;
-        document.querySelector('#reviewno').checked = false;
+        // document.querySelector('#reviewyes').checked = false;
+        // document.querySelector('#reviewno').checked = false;
 
-        $('#reviewlastname').val(lastname);
-        $('#reviewfirstname').val(firstname);
-        $('#reviewmiddlename').val(middlename);
-        $('#reviewgender').val(gender);
-        $('#reviewbarangay').val(barangay);
-        $('#reviewmunicipality').val(municipality);
-        $('#reviewprovince').val(province);
-        $('#reviewcategory').val(category);
-        if (yes == 1) document.querySelector('#reviewyes').checked = true;
-        if (no == 1) document.querySelector('#reviewno').checked = true;
+        // $('#reviewlastname').val(lastname);
+        // $('#reviewfirstname').val(firstname);
+        // $('#reviewmiddlename').val(middlename);
+        // $('#reviewgender').val(gender);
+        // $('#reviewbarangay').val(barangay);
+        // $('#reviewmunicipality').val(municipality);
+        // $('#reviewprovince').val(province);
+        // $('#reviewcategory').val(category);
+        // if (yes == 1) document.querySelector('#reviewyes').checked = true;
+        // if (no == 1) document.querySelector('#reviewno').checked = true;
 
-        $('#reviewmayorsPermitNumber').val(mayorsPermitNumber);
-        $('#reviewmayorsPermit').val(mayorsPermit);
-        $('#reviewenterpriseDevelopment').val(enterpriseDevelopment);
-        $('#reviewclassification').val(classification);
-        $('#reviewindustry').val(industry);
-        $('#reviewclassificationBySize').val(classificationBySize);
-        $('#reviewprofile').val(profile);
-        $('#reviewtechnicalAdvisory').val(technicalAdvisory);
-        $('#reviewdateOfServices').val(dateOfServices);
+        // $('#reviewmayorsPermitNumber').val(mayorsPermitNumber);
+        // $('#reviewmayorsPermit').val(mayorsPermit);
+        // $('#reviewenterpriseDevelopment').val(enterpriseDevelopment);
+        // $('#reviewclassification').val(classification);
+        // $('#reviewindustry').val(industry);
+        // $('#reviewclassificationBySize').val(classificationBySize);
+        // $('#reviewprofile').val(profile);
+        // $('#reviewtechnicalAdvisory').val(technicalAdvisory);
+        // $('#reviewdateOfServices').val(dateOfServices);
 
-        return {
-            lastname,
-            firstname,
-            middlename,
-            gender,
-            barangay,
-            municipality,
-            province,
-            category,
-            yes,
-            no,
-            mayorsPermitNumber,
-            mayorsPermit,
-            enterpriseDevelopment,
-            classification,
-            industry,
-            classificationBySize,
-            profile,
-            technicalAdvisory,
-            dateOfServices
+        const payload = {
+            msme_id: msme_id,
+            firstname: firstname,
+            middlename: middlename,
+            lastname: lastname,
+            fullname: `${firstname} ${middlename} ${lastname}`,
+            barangay: barangay,
+            city: municipality,
+            province: province,
+            category: category,
+            mayors_permit_registration: mayorsPermit,
+            bnr: yes,
+            mayors_permit_number: mayorsPermitNumber,
+            enterprise_development_track: enterpriseDevelopment,
+            classification_by_sector: classification,
+            industry_sector: industry,
+            classification_size: classificationBySize,
+            owner_gender: gender,
+            profile: profile,
+            technical_advisory_services_provided: technicalAdvisory,
+            date_of_services: dateOfServices,
+            date_created: ""
         }
+
+        return payload;
+    }
+
+    async function sendPostRequest() {
+        const request = new Request("Manage/updatePost", getPayload());
+        await request.SendPost();
+        SweetAlert.SuccessWithMessage("Updated Successfully");
     }
 </script>
-<?php $this->load->view('modalCreateConfirmation') ?>
+
+<script>
+    $(document).ready(function() {
+        init();
+        $('#saveBtn').click(function() {
+            sendPostRequest();
+        });
+    });
+</script>
