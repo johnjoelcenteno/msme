@@ -187,18 +187,67 @@
 
                                 <br>
 
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label for="">Technical Advisory Services Provided</label>
-                                        <input type="text" placeholder="Enter technical advisory services provided here" class="form-control" id="technicalAdvisory">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="">Date of services</label>
-                                        <input type="date" class="form-control" id="dateOfServices">
-                                    </div>
-                                </div>
+                                <style>
+                                    .danger {
+                                        color: red !important;
+                                        display: none;
+                                    }
+                                </style>
+                                <section class="card card-body">
+                                    <h3>Add Technical Advisory Services Provided</h3>
 
-                                <br>
+                                    <div class="row mt-3">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="" class="fw-bold">Technical Advisory Services Provided</label>
+                                                <input type="text" placeholder="Enter technical advisory services provided here" class="form-control" id="technicalAdvisory">
+                                                <span id="errorTechnical" class="danger bold">Invalid input</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="" class="fw-bold">Date of services</label>
+                                                <input type="text" class="form-control" placeholder="Date Started" id="dateOfServicesStarted">
+                                                <span id="dateStartedError" class="danger bold">Invalid input</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="" class="fw-bold">Date of services</label>
+                                                <input type="text" class="form-control" placeholder="Date Ended" id="dateOfServicesEnded">
+                                                <span id="dateEndedError" class="danger bold">Invalid input</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-end">
+                                        <button class="btn btn-secondary btn-sm" type="button" id="appendBtn">Append</button>
+                                    </div>
+                                </section>
+
+                                <section>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Technical Advisory Services Provided</th>
+                                                    <th>Date Started</th>
+                                                    <th>Date Ended</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="tbodyServicesProvided">
+                                                <tr>
+                                                    <td colspan="5" align="center">Appended services provided will appear here</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </section>
 
                                 <div class="row">
                                     <div class="col-md-12">
@@ -216,6 +265,8 @@
         </div>
     </div>
 </section>
+
+<script src="<?= base_url() ?>assets/custom_js/appendTechnicalServices.js"></script>
 <input type="hidden" id="msmeTable" value='<?= $msmeTable ?>'>
 <input type="hidden" id="msme_id" value='<?= $msme_id ?>'>
 <script>
@@ -223,6 +274,7 @@
 
     function init() {
         const msmeTable = JSON.parse($('#msmeTable').val());
+        // console.log(msmeTable);
         const {
             msme_id,
             firstname,
@@ -242,8 +294,12 @@
             owner_gender,
             profile,
             technical_advisory_services_provided,
-            date_of_services
+            date_of_services,
+            services_provided
         } = msmeTable;
+
+        servicesProvidedArray = JSON.parse(services_provided);
+        renderServicesProvidedArray();
 
         $('#lastname').val(lastname);
         $('#firstname').val(firstname);
@@ -287,30 +343,7 @@
         const profile = $('#profile').val();
         const technicalAdvisory = $('#technicalAdvisory').val();
         const dateOfServices = $('#dateOfServices').val();
-
-        // document.querySelector('#reviewyes').checked = false;
-        // document.querySelector('#reviewno').checked = false;
-
-        // $('#reviewlastname').val(lastname);
-        // $('#reviewfirstname').val(firstname);
-        // $('#reviewmiddlename').val(middlename);
-        // $('#reviewgender').val(gender);
-        // $('#reviewbarangay').val(barangay);
-        // $('#reviewmunicipality').val(municipality);
-        // $('#reviewprovince').val(province);
-        // $('#reviewcategory').val(category);
-        // if (yes == 1) document.querySelector('#reviewyes').checked = true;
-        // if (no == 1) document.querySelector('#reviewno').checked = true;
-
-        // $('#reviewmayorsPermitNumber').val(mayorsPermitNumber);
-        // $('#reviewmayorsPermit').val(mayorsPermit);
-        // $('#reviewenterpriseDevelopment').val(enterpriseDevelopment);
-        // $('#reviewclassification').val(classification);
-        // $('#reviewindustry').val(industry);
-        // $('#reviewclassificationBySize').val(classificationBySize);
-        // $('#reviewprofile').val(profile);
-        // $('#reviewtechnicalAdvisory').val(technicalAdvisory);
-        // $('#reviewdateOfServices').val(dateOfServices);
+        const services_provided = JSON.stringify(servicesProvidedArray);
 
         const payload = {
             msme_id: msme_id,
@@ -331,9 +364,10 @@
             classification_size: classificationBySize,
             owner_gender: gender,
             profile: profile,
-            technical_advisory_services_provided: technicalAdvisory,
+            // technical_advisory_services_provided: technicalAdvisory,
             date_of_services: dateOfServices,
-            date_created: ""
+            // date_created: "",
+            services_provided
         }
 
         return payload;

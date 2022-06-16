@@ -61,10 +61,14 @@ class Manage extends CI_Controller
         $insert['classification_size'] = $this->input->post('classification_size');
         $insert['owner_gender'] = $this->input->post('owner_gender');
         $insert['profile'] = $this->input->post('profile');
-        $insert['technical_advisory_services_provided'] = $this->input->post('technical_advisory_services_provided');
-        $insert['date_of_services'] = $this->input->post('date_of_services');
+        // $insert['technical_advisory_services_provided'] = $this->input->post('technical_advisory_services_provided');
+        // $insert['date_of_services'] = $this->input->post('date_of_services');
         $insert['date_created'] = date("Y-m-d");
+        $insert['house_no'] = $this->input->post("houseNo");
+        $insert['street_no'] = $this->input->post("streetNo");
+        $insert['services_provided'] = $this->input->post("servicesProvided");
 
+        // $this->Main_model->showNormalArray($insert);
         $this->Main_model->_insert('msme', $insert);
     }
 

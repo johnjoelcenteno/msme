@@ -31,20 +31,20 @@
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-md-3">
-                                                    <label for="">Last Name</label>
+                                                    <label for="" class="fw-bold">Last Name</label>
                                                     <input type="text" placeholder="Enter Last Name here" class="form-control" id="reviewlastname">
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <label for="">First Name</label>
+                                                    <label for="" class="fw-bold">First Name</label>
                                                     <input type="text" placeholder="Enter First Name here" class="form-control" id="reviewfirstname">
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <label for="">Middle Name</label>
+                                                    <label for="" class="fw-bold">Middle Name</label>
                                                     <input type="text" placeholder="Enter Middle Name here" class="form-control" id="reviewmiddlename">
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <label style="margin-bottom: -15px;">MSME/Owner Gender</label>
+                                                        <label style="margin-bottom: -15px;" class="fw-bold">MSME/Owner Gender</label>
                                                         <select class="form-control" id="reviewgender">
                                                             <option value="">Select Gender</option>
                                                             <option>Male</option>
@@ -58,16 +58,28 @@
                                             <div class="form-group">
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        <label for="">Barangay</label>
+                                                        <label for="" class="fw-bold">Barangay</label>
                                                         <input type="text" placeholder="Enter Barangay here" class="form-control" id="reviewbarangay">
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <label for="">Municipality/City</label>
+                                                        <label for="" class="fw-bold">Municipality/City</label>
                                                         <input type="text" placeholder="Enter Municipality/City here" class="form-control" id="reviewmunicipality">
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <label for="">Province</label>
+                                                        <label for="" class="fw-bold">Province</label>
                                                         <input type="text" placeholder="Enter Province here" class="form-control" id="reviewprovince">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label for="" class="fw-bold">House No.</label>
+                                                        <input type="text" placeholder="Enter Municipality/City here" class="form-control" id="reviewHouseNo">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="" class="fw-bold">Street No.</label>
+                                                        <input type="text" placeholder="Enter Barangay here" class="form-control" id="reviewStreetNo">
                                                     </div>
                                                 </div>
                                             </div>
@@ -75,7 +87,7 @@
                                             <div class="form-group">
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <label for="">Select Category</label>
+                                                        <label for="" class="fw-bold">Select Category</label>
                                                         <select class="form-control" id="reviewcategory">
                                                             <option value="">Select Category</option>
                                                             <option>Existing</option>
@@ -90,21 +102,21 @@
                                             <div class="row">
                                                 <div class="col-md-2">
                                                     <div class="form-group">
-                                                        <label for="">Business Name Registration</label><br>
+                                                        <label for="" class="fw-bold">Business Name Registration</label><br>
                                                         <input type="radio" name="bnrRadio" id="reviewyes" />
-                                                        <label for="">Yes</label><br>
+                                                        <label for="" class="fw-bold">Yes</label><br>
                                                         <input type="radio" name="bnrRadio" id="reviewno" />
-                                                        <label for="">No</label>
+                                                        <label for="" class="fw-bold">No</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-5">
                                                     <div class="form-group">
-                                                        <label>Mayor's Permit Number</label>
+                                                        <label class="fw-bold">Mayor's Permit Number</label>
                                                         <input type="text" placeholder="Enter Mayor's permit number" class="form-control" id="reviewmayorsPermitNumber">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-5">
-                                                    <label style="margin-bottom: -15px;">Mayor's Permit Registration</label>
+                                                    <label style="margin-bottom: -15px;" class="fw-bold">Mayor's Permit Registration</label>
                                                     <select class="form-control" id="reviewmayorsPermit">
                                                         <option>Select mayor's permit</option>
                                                         <option>Registered</option>
@@ -117,13 +129,13 @@
 
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <label for="">Enterprise Development Track</label>
+                                                    <label for="" class="fw-bold">Enterprise Development Track</label>
                                                     <select name="" class="form-control" id="reviewenterpriseDevelopment">
                                                         <option value="">Select Enterprise Development</option>
-                                                        <option value="1">Startine Enterprise</option>
-                                                        <option value="2">Growing</option>
-                                                        <option value="3">Expanding</option>
-                                                        <option value="4">Sustaining</option>
+                                                        <option value="1">Startine Enterprise (Level 1)</option>
+                                                        <option value="2">Growing (Level 2)</option>
+                                                        <option value="3">Expanding (Level 3)</option>
+                                                        <option value="4">Sustaining (Level 4)</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -132,7 +144,7 @@
 
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <label for="">Classification by Sector</label>
+                                                    <label for="" class="fw-bold">Classification by Sector</label>
                                                     <select class="form-control" id="reviewclassification">
                                                         <option value="">Select Classification</option>
                                                         <option>MFG</option>
@@ -142,7 +154,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label for="">Industry Sector</label>
+                                                    <label for="" class="fw-bold">Industry Sector</label>
                                                     <select class="form-control" id="reviewindustry">
                                                         <option value="">Select Industry sector</option>
                                                         <option>Auto & Auto pass</option>
@@ -167,7 +179,7 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="">Classification by size</label>
+                                                        <label for="" class="fw-bold">Classification by size</label>
                                                         <select class="form-control" id="reviewclassificationBySize">
                                                             <option value="">Select classification by size</option>
                                                             <option>Micro</option>
@@ -180,7 +192,7 @@
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="">Profile</label>
+                                                        <label for="" class="fw-bold">Profile</label>
                                                         <select class="form-control" id="reviewprofile">
                                                             <option value="">Select profile</option>
                                                             <option>OSY</option>
@@ -193,16 +205,26 @@
 
                                             <br>
 
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label for="">Technical Advisory Services Provided</label>
-                                                    <input type="text" placeholder="Enter technical advisory services provided here" class="form-control" id="reviewtechnicalAdvisory">
+                                            <section>
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>Technical Advisory Services Provided</th>
+                                                                <th>Date Started</th>
+                                                                <th>Date Ended</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="tbodyServicesProvided">
+                                                            <tr>
+                                                                <td colspan="5" align="center">Appended services provided will appear here</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <label for="">Date of services</label>
-                                                    <input type="date" class="form-control" id="reviewdateOfServices">
-                                                </div>
-                                            </div>
+                                            </section>
 
                                             <br>
 
@@ -236,6 +258,7 @@
 
         $('#saveBtn').click(function() {
             transferInputModal = transferInputIntoModal();
+            console.log(transferInputModal, 'transfer input modal');
             createModal.show();
         });
 
@@ -249,7 +272,10 @@
                 category,
                 // adjust bnr,
                 profile,
+                houseNo,
+                streetNo,
             } = transferInputModal;
+
 
             const city = transferInputModal.municipality;
             const mayors_permit_registration = transferInputModal.mayorsPermit;
@@ -262,7 +288,7 @@
             const technical_advisory_services_provided = transferInputModal.technicalAdvisory;
             const date_of_services = transferInputModal.dateOfServices;
             const bnr = transferInputModal.yes;
-
+            const servicesProvided = JSON.stringify(servicesProvidedArray);
 
             const payload = {
                 firstname,
@@ -282,7 +308,10 @@
                 owner_gender,
                 profile,
                 technical_advisory_services_provided,
-                date_of_services
+                date_of_services,
+                houseNo,
+                streetNo,
+                servicesProvided
             };
 
             const request = new Request("Manage/addRecordPost", payload);

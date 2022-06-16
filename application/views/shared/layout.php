@@ -76,7 +76,7 @@
 						&copy;
 						<script>
 							document.write(new Date().getFullYear())
-						</script>, made with <i class="material-icons">favorite</i> by Cassandra wardel Da Greyt
+						</script>, made with <i class="material-icons">favorite</i> by <a href="<?= base_url() ?>About">Team Of Developers</a>
 						<a href="" target="blank"></a>
 					</div>
 				</div>

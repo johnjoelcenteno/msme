@@ -20,7 +20,7 @@
 		text-align: left;
 		margin-left: 15%;
 		margin-right: 15%;
-		margin-top: 30px;
+		margin-top: 5px;
 	}
 
 	.login-div {
@@ -49,11 +49,11 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <!-- BEGIN LOGIN SECTION -->
-<section class="land-background">
-	<div align="center" class="bg-light">
-		<h1 align="center" style="font-weight: bold; margin-top: 5%" class="text-uppercase">Department of Trade and Industry / cagayan provincial office</h1>
+<section class="land-background" style="height: 100%; width: 100%;">
+	<div align="center" class="bg-light" style="width: 50%; height: 50%">
+		<h3 align="center" style="font-weight: bold; margin-top: 5%">Department of Trade and Industry -<br> Cagayan Provincial Office</h3>
 		<div class="col-md-6">
-			<img src="<?= base_url() ?>assets/img/dti.png" width="300" height="250" alt="">
+			<img src="<?= base_url() ?>assets/img/dti.png" width="150" height="150" alt="">
 		</div>
 		<div class="col-md-6" style="top: 10%;">
 			<form action="">
